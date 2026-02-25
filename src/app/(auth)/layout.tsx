@@ -16,13 +16,13 @@ const geistMono = Geist_Mono({
 
 const vazirmatn = localFont({
     src: [
-        { path: "../fonts/Vazirmatn-Light.ttf", weight: "300" },
-        { path: "../fonts/Vazirmatn-Regular.ttf", weight: "400" },
-        { path: "../fonts/Vazirmatn-Medium.ttf", weight: "500" },
-        { path: "../fonts/Vazirmatn-SemiBold.ttf", weight: "600" },
-        { path: "../fonts/Vazirmatn-Bold.ttf", weight: "700" },
-        { path: "../fonts/Vazirmatn-ExtraBold.ttf", weight: "800" },
-        { path: "../fonts/Vazirmatn-Black.ttf", weight: "900" },
+        { path: "./fonts/Vazirmatn-Light.ttf", weight: "300" },
+        { path: "./fonts/Vazirmatn-Regular.ttf", weight: "400" },
+        { path: "./fonts/Vazirmatn-Medium.ttf", weight: "500" },
+        { path: "./fonts/Vazirmatn-SemiBold.ttf", weight: "600" },
+        { path: "./fonts/Vazirmatn-Bold.ttf", weight: "700" },
+        { path: "./fonts/Vazirmatn-ExtraBold.ttf", weight: "800" },
+        { path: "./fonts/Vazirmatn-Black.ttf", weight: "900" },
     ],
     variable: "--font-vazir",
     display: "swap",
@@ -40,7 +40,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="fa" dir="rtl">
-            <body className={`${vazirmatn.variable}`}>
+            <body className={`${vazirmatn.variable} antialiased`}>
                 <ThemeRegistry>
                   {children}
                 </ThemeRegistry>
