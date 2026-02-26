@@ -9,7 +9,7 @@ const Mainpage = () => {
         <div
             className="flex flex-col gap-10"
         >
-            {/* <HeroSection />
+            <HeroSection />
             <div className="container mx-auto">
                 <ShowCases />
             </div>
@@ -18,7 +18,7 @@ const Mainpage = () => {
             </div>
             <div className="container mx-auto">
                 <FinalCTASection />
-            </div> */}
+            </div>
         </div>
     );
 };
