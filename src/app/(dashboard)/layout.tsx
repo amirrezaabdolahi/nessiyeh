@@ -29,7 +29,12 @@ export default function MainLayout({
                     <IconButton size="large">
                         <Notifications />
                     </IconButton>
-                    <Avatar sx={{ bgcolor: "primary.main" }}>P</Avatar>
+                    <Avatar
+                        className="cursor-pointer"
+                        sx={{ bgcolor: "primary.main" }}
+                    >
+                        P
+                    </Avatar>
                 </div>
             </Card>
             {children}
