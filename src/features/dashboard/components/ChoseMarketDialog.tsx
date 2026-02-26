@@ -1,0 +1,85 @@
+"use client";
+import {
+    Avatar,
+    Button,
+    Dialog,
+    DialogTitle,
+    IconButton,
+    List,
+    ListItem,
+    ListItemAvatar,
+    ListItemButton,
+    ListItemText,
+} from "@mui/material";
+import { blue } from "@mui/material/colors";
+import React from "react";
+import { Room } from "@mui/icons-material";
+
+const markets: string[] = ["نگین", "کروش", "رفاه"];
+interface SimpleDialogProps {
+    onClose: (value: string) => void;
+    open: boolean;
+    selectedValue: string;
+}
+
+const ChoseMarketDialog = () => {
+    const [open, setOpen] = React.useState(false);
+    const [selectedValue, setSelectedValue] = React.useState(markets[0]);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = (value: string) => {
+        setOpen(false);
+        setSelectedValue(value);
+    };
+    return (
+        <div>
+            <Button variant="outlined" className="rounded-full! w-3xs" onClick={handleClickOpen}>
+                {selectedValue}
+            </Button>
+            <SimpleDialog
+                selectedValue={selectedValue}
+                open={open}
+                onClose={handleClose}
+            />
+        </div>
+    );
+};
+
+export default ChoseMarketDialog;
+
+function SimpleDialog(props: SimpleDialogProps) {
+    const { onClose, selectedValue, open } = props;
+
+    const handleClose = () => {
+        onClose(selectedValue);
+    };
+
+    const handleListItemClick = (value: string) => {
+        onClose(value);
+    };
+
+    return (
+        <Dialog onClose={handleClose} open={open} >
+            <DialogTitle>انتخاب مارکت</DialogTitle>
+            <List sx={{ pt: 0 }} className="w-lg rounded-xl! overflow-hidden">
+                {markets.map((market) => (
+                    <ListItem disablePadding key={market}>
+                        <ListItemButton
+                            onClick={() => handleListItemClick(market)}
+                        >
+                            <ListItemAvatar>
+                                <IconButton size="small" color="primary">
+                                    <Room fontSize="small" />
+                                </IconButton>
+                            </ListItemAvatar>
+                            <ListItemText primary={market} />
+                        </ListItemButton>
+                    </ListItem>
+                ))}
+            </List>
+        </Dialog>
+    );
+}
