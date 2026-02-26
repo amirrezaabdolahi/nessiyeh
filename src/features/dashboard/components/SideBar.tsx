@@ -1,7 +1,6 @@
 import { links } from "@/data/DashboardMenuData";
 import { Card, Typography } from "@mui/material";
 import Link from "next/link";
-import React from "react";
 
 const SideBar = () => {
     return (
@@ -19,7 +18,7 @@ const SideBar = () => {
                             <Typography key={idx} variant="body1">
                                 <Link
                                     href={item.href}
-                                    className="flex items-center text-inherit gap-2 p-2 rounded hover:bg-gray-100"
+                                    className="flex items-center text-sm gap-2 p-2 rounded hover:bg-gray-100"
                                 >
                                     {item.icon}
                                     <span>{item.name}</span>
