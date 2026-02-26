@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import ThemeRegistry from "@/providers/ThemeRegistry";
 
+
 const geistSans = Geist({
     variable: "--font-geist-sans",
     subsets: ["latin"],
@@ -41,9 +42,7 @@ export default function RootLayout({
     return (
         <html lang="fa" dir="rtl">
             <body className={`${vazirmatn.variable}`}>
-                <ThemeRegistry>
-                  {children}
-                </ThemeRegistry>
+                <ThemeRegistry>{children}</ThemeRegistry>
             </body>
         </html>
     );

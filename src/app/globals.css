@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-
 /* Optional: global fixes */
 
 html,
@@ -10,4 +9,15 @@ body {
 
 * {
     box-sizing: border-box;
+    scrollbar-width: thin;
+    scrollbar-color: #000 transparent;
+}
+
+/* Chrome, Edge, Safari */
+*::-webkit-scrollbar {
+    width: 8px;
+}
+*::-webkit-scrollbar-thumb {
+    background-color: #000;
+    border-radius: 4px;
 }
