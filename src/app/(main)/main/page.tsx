@@ -1,3 +1,6 @@
+import Footer from "@/components/Footer";
+import SupermarketsMapWrapper from "@/components/SuperMarketMapWrapper";
+import MapSection from "@/components/SupermarketsMap";
 import DescriptionSection from "@/features/main/components/DescriptionSection";
 import FinalCTASection from "@/features/main/components/FinalCTASection";
 import HeroSection from "@/features/main/components/HeroSection";
@@ -19,6 +22,13 @@ const Mainpage = () => {
             <div className="container mx-auto">
                 <FinalCTASection />
             </div>
+            {/* <div className="container mx-auto">
+                <SupermarketsMapWrapper />
+            </div> */}
+
+
+
+            <Footer />
         </div>
     );
 };
@@ -32,5 +42,6 @@ export default Mainpage;
 //   <DescriptionSection />
 //   <Testimonials />
 //   <FinalCTA />
+//   <MapSection />
 //   <Footer />
 // </Box>
