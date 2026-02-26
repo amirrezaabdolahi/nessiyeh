@@ -14,8 +14,8 @@ import {
 import { blue } from "@mui/material/colors";
 import React from "react";
 import { Room } from "@mui/icons-material";
+import { markets } from "@/data/navbarfakedata";
 
-const markets: string[] = ["نگین", "کروش", "رفاه"];
 interface SimpleDialogProps {
     onClose: (value: string) => void;
     open: boolean;
@@ -36,7 +36,12 @@ const ChoseMarketDialog = () => {
     };
     return (
         <div>
-            <Button variant="outlined" className="rounded-full! w-3xs" onClick={handleClickOpen}>
+            <Button
+                variant="outlined"
+                endIcon={<Room fontSize="small" />}
+                className="rounded-full! w-3xs"
+                onClick={handleClickOpen}
+            >
                 {selectedValue}
             </Button>
             <SimpleDialog
@@ -62,7 +67,7 @@ function SimpleDialog(props: SimpleDialogProps) {
     };
 
     return (
-        <Dialog onClose={handleClose} open={open} >
+        <Dialog onClose={handleClose} open={open}>
             <DialogTitle>انتخاب مارکت</DialogTitle>
             <List sx={{ pt: 0 }} className="w-lg rounded-xl! overflow-hidden">
                 {markets.map((market) => (

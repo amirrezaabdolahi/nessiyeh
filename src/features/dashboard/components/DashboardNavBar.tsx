@@ -2,9 +2,11 @@ import ChoseMarketDialog from "@/features/dashboard/components/ChoseMarketDialog
 import { Notifications } from "@mui/icons-material";
 import { Avatar, Card, IconButton, TextField, Typography } from "@mui/material";
 
+
+
 const DashboardNavBar = () => {
     return (
-        <Card className="w-full p-4!  flex items-center justify-between">
+        <Card className="w-full py-2! px-4!  flex items-center justify-between">
             <div className="flex items-center gap-4">
                 <Typography
                     variant="h6"
