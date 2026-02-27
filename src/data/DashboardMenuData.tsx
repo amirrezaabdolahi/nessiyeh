@@ -9,10 +9,12 @@ import {
     StoreMallDirectoryRounded,
 } from "@mui/icons-material";
 
-export const links: Array<{
+export interface LinkItemType {
     group: string;
     items: Array<{ name: string; href: string; icon: any }>;
-}> = [
+}
+
+export const links: Array<LinkItem> = [
     {
         group: "نمای کلی",
         items: [
