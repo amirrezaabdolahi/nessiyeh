@@ -1,4 +1,4 @@
-import Footer from "@/components/Footer";
+import Footer from "@/components/main/Footer";
 import SupermarketsMapWrapper from "@/components/SuperMarketMapWrapper";
 import MapSection from "@/components/SupermarketsMap";
 import DescriptionSection from "@/features/main/components/DescriptionSection";
