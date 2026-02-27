@@ -1,8 +1,12 @@
+"use client";
 import { links } from "@/data/DashboardMenuData";
 import { Avatar, Box, Card, Typography } from "@mui/material";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const SideBar = () => {
+    const pathname = usePathname();
+
     return (
         <Card className="h-full p-4! flex flex-col justify-between">
             <div className="flex flex-col gap-4">
@@ -16,7 +20,10 @@ const SideBar = () => {
                                 <Typography
                                     key={idx}
                                     variant="body1"
-                                    className="hover:bg-gray-100 hover:text-black rounded transition-all duration-100 text-gray-600 "
+                                    className={`
+                                        hover:bg-gray-100 hover:text-black rounded transition-all duration-100 text-gray-600
+                                            ${pathname === item.href ? "bg-blue-100 border-r border-blue-500 text-black! " : ""}
+                                        `}
                                 >
                                     <Link
                                         href={item.href}
@@ -32,7 +39,7 @@ const SideBar = () => {
                 ))}
             </div>
 
-            <Box className="flex gap-2 border-t border-gray-300 p-2 items-center cursor-pointer "  >
+            <Box className="flex gap-2 border-t border-gray-300 p-2 items-center cursor-pointer ">
                 <Avatar sx={{ bgcolor: "primary.main" }}>P</Avatar>
                 <span className="flex flex-col ">
                     <Typography variant="body1">امیررضا عبدالهی</Typography>
