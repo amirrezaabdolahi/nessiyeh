@@ -1,6 +1,8 @@
 import DashboardsPageHeader from "@/components/dash/DashboardsPageHeader";
 import { dashboardCards } from "@/data/DashboardDatas";
+import { formatedTodayDate } from "@/utils/date";
 import {
+    AddRounded,
     ArrowDownwardRounded,
     ArrowDropDownRounded,
 } from "@mui/icons-material";
@@ -9,7 +11,23 @@ import { Box, Button, Card, IconButton, Typography } from "@mui/material";
 const Dashboard = () => {
     return (
         <div className="h-full flex flex-col gap-8">
-            <DashboardsPageHeader />
+            <DashboardsPageHeader
+                title="روز خوش ، امیررضا"
+                caption={` ارومیه نگین ،${formatedTodayDate()}`}
+            >
+                <Button
+                    endIcon={<AddRounded fontSize="small" />}
+                    variant="outlined"
+                >
+                    صفحه نسیه
+                </Button>
+                <Button
+                    endIcon={<AddRounded fontSize="small" />}
+                    variant="contained"
+                >
+                    فروش
+                </Button>
+            </DashboardsPageHeader>
             <Box
                 sx={{
                     display: "flex",
@@ -82,7 +100,7 @@ const Dashboard = () => {
                                 </span>
                             </Box>
                             <Box className="flex flex-col items-end">
-                                <Typography variant="body1" color="success" >
+                                <Typography variant="body1" color="success">
                                     12000000 ريال
                                 </Typography>
                                 <Typography variant="caption">
@@ -108,7 +126,7 @@ const Dashboard = () => {
                                 </span>
                             </Box>
                             <Box className="flex flex-col items-end">
-                                <Typography variant="body1" color="success" >
+                                <Typography variant="body1" color="success">
                                     12000000 ريال
                                 </Typography>
                                 <Typography variant="caption">
@@ -134,7 +152,7 @@ const Dashboard = () => {
                                 </span>
                             </Box>
                             <Box className="flex flex-col items-end">
-                                <Typography variant="body1" color="success" >
+                                <Typography variant="body1" color="success">
                                     12000000 ريال
                                 </Typography>
                                 <Typography variant="caption">
@@ -160,7 +178,7 @@ const Dashboard = () => {
                                 </span>
                             </Box>
                             <Box className="flex flex-col items-end">
-                                <Typography variant="body1" color="success" >
+                                <Typography variant="body1" color="success">
                                     12000000 ريال
                                 </Typography>
                                 <Typography variant="caption">
