@@ -27,7 +27,7 @@ export const Customers: Array<Customer> = [
         phone: "09225621256",
         totalCredit: 10_000_000,
         paid: 5_000_000,
-        status: "overdue",
+        status: "active",
         lastPayment: "13 اردیبهشت"
     },
     {
@@ -36,7 +36,7 @@ export const Customers: Array<Customer> = [
         phone: "09225621256",
         totalCredit: 6_000_000,
         paid: 0,
-        status: "active",
+        status: "overdue",
         lastPayment: "16 اردیبهشت"
     },
     {
@@ -53,8 +53,8 @@ export const Customers: Array<Customer> = [
         username: "حسن مرادی",
         phone: "09225621256",
         totalCredit: 2_000_000,
-        paid: 400_000,
-        status: "active",
+        paid: 2_000_000,
+        status: "settled",
         lastPayment: "12 اردیبهشت"
     },
     {
@@ -66,8 +66,26 @@ export const Customers: Array<Customer> = [
         status: "active",
         lastPayment: "12 اردیبهشت"
     },
+    {
+        id: 7,
+        username: "کامران تهرانی",
+        phone: "09225621256",
+        totalCredit: 11_000_000,
+        paid: 3_000_000,
+        status: "active",
+        lastPayment: "12 اردیبهشت"
+    },
+    {
+        id: 8,
+        username: "کامران تهرانی",
+        phone: "09225621256",
+        totalCredit: 11_000_000,
+        paid: 3_000_000,
+        status: "active",
+        lastPayment: "12 اردیبهشت"
+    },
 ]
 
-export const CustomersBranchName : Array<string> = [
-    "مشتری","شماره","جمع حساب","پرداخت شده","باقیمانده","شرایط","آخرین پرداخت","",
+export const CustomersBranchName: Array<string> = [
+    "مشتری", "شماره", "جمع حساب", "پرداخت شده", "باقیمانده", "شرایط", "آخرین پرداخت", "",
 ]
