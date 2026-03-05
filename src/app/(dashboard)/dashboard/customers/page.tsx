@@ -1,6 +1,7 @@
 "use client";
 import DashboardsPageHeader from "@/components/dash/DashboardsPageHeader";
 import { Customers, CustomersBranchName } from "@/data/DashboardCustomers";
+import BranchHead from "@/features/dashboard/components/BranchHead";
 import { AddRounded } from "@mui/icons-material";
 import { Avatar, Box, Button, Card, Chip, Typography } from "@mui/material";
 import Link from "next/link";
@@ -32,33 +33,8 @@ const DashboardCustomers = () => {
                         <Button variant="outlined">پرداخت شده</Button>
                     </Link>
                 </Box>
-                <Card
-                    className="w-300
-                                xl:w-full
-                                sticky 
-                                top-0 
-                                z-50
-                                grid 
-                                grid-cols-8 
-                                items-center 
-                                justify-between
-                                p-4
-                                border
-                                border-gray-400
-                                transition-all
-
-                "
-                >
-                    {CustomersBranchName.map((name, index) => (
-                        <Typography
-                            key={index}
-                            variant="body2"
-                            className="text-start"
-                        >
-                            {name}
-                        </Typography>
-                    ))}
-                </Card>
+                {/* branches */}
+                <BranchHead branches={CustomersBranchName} />
                 {Customers.map((customer) => (
                     <Box
                         key={customer.id}
