@@ -16,3 +16,16 @@ export type ProductType = {
     is_active?: boolean;   // آیا محصول فعال است یا خیر (حذف نرم)
 }
 
+export type ProductShowType = {
+    id: string;
+    sku?: string;          // کد اختصاصی محصول (بارکد داخلی)
+    name: string;
+    sell_price: number;
+    man_date?: string;
+    exp_date?: string;
+    image?: string;
+    category: string;      // مثلاً: خوراکی، لبنیات
+    qty: number;           // مقدار موجودی
+    unit: string;          // واحد شمارش: عدد، کیلو، بسته
+    is_active?: boolean;   // آیا محصول فعال است یا خیر (حذف نرم)
+}

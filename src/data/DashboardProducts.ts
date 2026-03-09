@@ -1,16 +1,16 @@
-import { ProductType } from "@/types/productTypes";
+import { ProductShowType, ProductType } from "@/types/productTypes";
 
 export const products: ProductType[] = [
     {
-        id: "1",
-        sku: "1001",
-        name: "چیپس نمکی مزمز",
+        id: "1",// show
+        sku: "1001",// show
+        name: "چیپس نمکی مزمز",// show
         description: "چیپس نمکی معمولی بسته‌بندی جدید",
         buy_price: 150000,
-        sell_price: 200000,
-        man_date: "2026-02-20",
-        exp_date: "2026-08-20",
-        category: "خوراکی",
+        sell_price: 200000,// show
+        man_date: "2026-02-20",// show
+        exp_date: "2026-08-20",// show
+        category: "خوراکی", // show
         branch: "چیپس",
         unit: "بسته",
         qty: 50,
@@ -149,3 +149,115 @@ export const products: ProductType[] = [
         is_active: true
     }
 ];
+
+
+export const productsShow: ProductShowType[] = [
+    {
+        id: "1",// show
+        sku: "1001",// show
+        name: "چیپس نمکی مزمز",// show
+        sell_price: 200000,// show
+        man_date: "2026-02-20",// show
+        exp_date: "2026-08-20",// show
+        category: "خوراکی", // show
+        unit: "بسته",// show
+        qty: 50,// show
+        is_active: true// show
+    },
+    {
+        id: "2",
+        sku: "1002",
+        name: "پفک ذرت",
+        sell_price: 120000,
+        category: "خوراکی",
+        unit: "بسته",
+        qty: 100,
+        is_active: true
+    },
+    {
+        id: "3",
+        sku: "1003",
+        name: "لواشک آلبالو",
+        sell_price: 90000,
+        category: "خوراکی",
+        unit: "بسته",
+        qty: 200,
+        is_active: true
+    },
+    {
+        id: "4",
+        sku: "2001",
+        name: "شکلات تلخ",
+        sell_price: 450000,
+        category: "شیرینی",
+        unit: "عدد",
+        qty: 40,
+        is_active: true
+    },
+    {
+        id: "5",
+        sku: "3001",
+        name: "مایع لباسشویی",
+        sell_price: 2200000,
+        man_date: "2025-05-10",
+        exp_date: "2028-05-10",
+        category: "شوینده",
+        unit: "بطری",
+        qty: 25,
+        is_active: true
+    },
+    {
+        id: "6",
+        sku: "4001",
+        name: "نوشابه کوکاکولا",
+        sell_price: 160000,
+        man_date: "2026-01-01",
+        exp_date: "2027-01-01",
+        category: "نوشیدنی",
+        unit: "قوطی",
+        qty: 150,
+        is_active: true
+    },
+    {
+        id: "7",
+        sku: "3002",
+        name: "جامد ظرفشویی",
+        sell_price: 500000,
+        category: "شوینده",
+        unit: "عدد",
+        qty: 60,
+        is_active: true
+    },
+    {
+        id: "8",
+        sku: "4002",
+        name: "نوشابه گازدار پرتقالی",
+        sell_price: 150000,
+        category: "نوشیدنی",
+        unit: "بطری",
+        qty: 80,
+        is_active: true
+    },
+    {
+        id: "9",
+        sku: "3003",
+        name: "وایتکس",
+        sell_price: 350000,
+        category: "شوینده",
+        unit: "گالن",
+        qty: 40,
+        is_active: true
+    },
+    {
+        id: "10",
+        sku: "4003",
+        name: "دوغ محلی",
+        sell_price: 130000,
+        man_date: "2026-03-08",
+        exp_date: "2026-03-14",
+        category: "نوشیدنی",
+        unit: "بطری",
+        qty: 45,
+        is_active: true
+    }
+]

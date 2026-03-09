@@ -1,6 +1,7 @@
 import DashboardsPageHeader from "@/components/dash/DashboardsPageHeader";
+import { productsShow } from "@/data/DashboardProducts";
 import { AddRounded } from "@mui/icons-material";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Card, Typography } from "@mui/material";
 
 const Products = () => {
     return (
@@ -17,7 +18,11 @@ const Products = () => {
             </Box>
             <Box>
                 <div>
-                    {}
+                    {productsShow.map(product => (
+                        <Card key={product.id}>
+                            <Typography variant="body1">{product.name}</Typography>
+                        </Card>
+                    ))}
                 </div>
             </Box>
         </div>
