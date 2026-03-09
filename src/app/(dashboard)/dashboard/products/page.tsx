@@ -1,7 +1,8 @@
 import DashboardsPageHeader from "@/components/dash/DashboardsPageHeader";
 import { productsShow } from "@/data/DashboardProducts";
-import { AddRounded } from "@mui/icons-material";
+import { AddRounded, CameraRounded, ImageRounded } from "@mui/icons-material";
 import { Box, Button, Card, Typography } from "@mui/material";
+import Link from "next/link";
 
 const Products = () => {
     return (
@@ -17,11 +18,39 @@ const Products = () => {
                 </Typography>
             </Box>
             <Box>
-                <div>
-                    {productsShow.map(product => (
-                        <Card key={product.id}>
-                            <Typography variant="body1">{product.name}</Typography>
-                        </Card>
+                <div className="grid grid-cols-4 gap-4">
+                    {productsShow.map((product) => (
+                        <Link key={product.id} href={`products/${product.id}`} className="h-full">
+                            <Card className="rounded-lg! h-full">
+                                <div className="w-full h-80 flex items-center justify-center">
+                                    <ImageRounded color="action" />
+                                </div>
+                                <div className="p-2">
+                                    <Typography variant="body1">
+                                        {product.name}
+                                    </Typography>
+                                    {product.sku && (
+                                        <Typography variant="body2">
+                                            بارکد : {product.sku}
+                                        </Typography>
+                                    )}
+                                    <Typography variant="body2">
+                                        قیمت : {product.sell_price}
+                                    </Typography>
+                                    {product.exp_date && (
+                                        <Typography variant="body2">
+                                            تاریخ انقضا : {product.exp_date}
+                                        </Typography>
+                                    )}
+                                    <Typography variant="body2">
+                                        {product.category}
+                                    </Typography>
+                                    <Typography variant="body2">
+                                        {product.unit} : {product.qty}
+                                    </Typography>
+                                </div>
+                            </Card>
+                        </Link>
                     ))}
                 </div>
             </Box>

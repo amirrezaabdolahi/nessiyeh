@@ -241,7 +241,7 @@ export const productsShow: ProductShowType[] = [
     {
         id: "9",
         sku: "3003",
-        name: "وایتکس",
+        name: "وایتکس", 
         sell_price: 350000,
         category: "شوینده",
         unit: "گالن",
