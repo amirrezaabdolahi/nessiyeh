@@ -1,7 +1,6 @@
 import DashboardsPageHeader from "@/components/dash/DashboardsPageHeader";
 import { AddRounded } from "@mui/icons-material";
-import { Button } from "@mui/material";
-import React from "react";
+import { Box, Button, Typography } from "@mui/material";
 
 const Products = () => {
     return (
@@ -11,6 +10,16 @@ const Products = () => {
                     محصول
                 </Button>
             </DashboardsPageHeader>
+            <Box>
+                <Typography variant="body1">
+                    سرچ محصولات و فیلتر بندی
+                </Typography>
+            </Box>
+            <Box>
+                <div>
+                    {}
+                </div>
+            </Box>
         </div>
     );
 };
