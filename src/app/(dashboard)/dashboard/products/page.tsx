@@ -1,3 +1,4 @@
+import BranchSelect from "@/components/dash/BranchSelectField";
 import CategorySelect from "@/components/dash/CategorySelectField";
 import DashboardsPageHeader from "@/components/dash/DashboardsPageHeader";
 import { productsShow } from "@/data/DashboardProducts";
@@ -21,16 +22,16 @@ const Products = () => {
                 </Button>
             </DashboardsPageHeader>
             <div className="grid grid-cols-2 w-full ">
-                <div className=" flex items-center w-full gap-2 ">
+                <div className=" flex items-center w-full gap-4 ">
                     <TextField
                         size="small"
                         label="جستوجو"
                         placeholder="نام محصول ، بارکد ، شناسه و ..."
                         fullWidth
                     />
-                    <div className="flex w-full">
+                    <div className="flex w-full gap-2">
                         <CategorySelect />
-                        
+                        <BranchSelect />
                     </div>
                 </div>
             </div>
