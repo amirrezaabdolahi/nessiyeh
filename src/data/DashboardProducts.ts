@@ -15,7 +15,6 @@ export const products: ProductType[] = [
         unit: "بسته",
         qty: 50,
         min_stock: 10,
-        is_active: true
     },
     {
         id: "2",
@@ -29,7 +28,6 @@ export const products: ProductType[] = [
         unit: "بسته",
         qty: 100,
         min_stock: 20,
-        is_active: true
     },
     {
         id: "3",
@@ -43,7 +41,6 @@ export const products: ProductType[] = [
         unit: "بسته",
         qty: 200,
         min_stock: 50,
-        is_active: true
     },
     {
         id: "4",
@@ -56,7 +53,6 @@ export const products: ProductType[] = [
         unit: "عدد",
         qty: 40,
         min_stock: 5,
-        is_active: true
     },
     {
         id: "5",
@@ -72,7 +68,6 @@ export const products: ProductType[] = [
         unit: "بطری",
         qty: 25,
         min_stock: 5,
-        is_active: true
     },
     {
         id: "6",
@@ -88,7 +83,6 @@ export const products: ProductType[] = [
         unit: "قوطی",
         qty: 150,
         min_stock: 30,
-        is_active: true
     },
     {
         id: "7",
@@ -102,7 +96,6 @@ export const products: ProductType[] = [
         unit: "عدد",
         qty: 60,
         min_stock: 10,
-        is_active: true
     },
     {
         id: "8",
@@ -116,7 +109,6 @@ export const products: ProductType[] = [
         unit: "بطری",
         qty: 80,
         min_stock: 20,
-        is_active: true
     },
     {
         id: "9",
@@ -130,7 +122,6 @@ export const products: ProductType[] = [
         unit: "گالن",
         qty: 40,
         min_stock: 5,
-        is_active: true
     },
     {
         id: "10",
@@ -146,7 +137,6 @@ export const products: ProductType[] = [
         unit: "بطری",
         qty: 45,
         min_stock: 15,
-        is_active: true
     }
 ];
 
@@ -161,8 +151,7 @@ export const productsShow: ProductShowType[] = [
         exp_date: "2026-08-20",// show
         category: "خوراکی", // show
         unit: "بسته",// show
-        qty: 50,// show
-        is_active: true// show
+        qty: 50,// show// show
     },
     {
         id: "2",
@@ -172,7 +161,6 @@ export const productsShow: ProductShowType[] = [
         category: "خوراکی",
         unit: "بسته",
         qty: 100,
-        is_active: true
     },
     {
         id: "3",
@@ -182,7 +170,6 @@ export const productsShow: ProductShowType[] = [
         category: "خوراکی",
         unit: "بسته",
         qty: 200,
-        is_active: true
     },
     {
         id: "4",
@@ -192,7 +179,6 @@ export const productsShow: ProductShowType[] = [
         category: "شیرینی",
         unit: "عدد",
         qty: 40,
-        is_active: true
     },
     {
         id: "5",
@@ -204,7 +190,6 @@ export const productsShow: ProductShowType[] = [
         category: "شوینده",
         unit: "بطری",
         qty: 25,
-        is_active: true
     },
     {
         id: "6",
@@ -216,7 +201,6 @@ export const productsShow: ProductShowType[] = [
         category: "نوشیدنی",
         unit: "قوطی",
         qty: 150,
-        is_active: true
     },
     {
         id: "7",
@@ -226,7 +210,6 @@ export const productsShow: ProductShowType[] = [
         category: "شوینده",
         unit: "عدد",
         qty: 60,
-        is_active: true
     },
     {
         id: "8",
@@ -236,17 +219,15 @@ export const productsShow: ProductShowType[] = [
         category: "نوشیدنی",
         unit: "بطری",
         qty: 80,
-        is_active: true
     },
     {
         id: "9",
         sku: "3003",
-        name: "وایتکس", 
+        name: "وایتکس",
         sell_price: 350000,
         category: "شوینده",
         unit: "گالن",
         qty: 40,
-        is_active: true
     },
     {
         id: "10",
@@ -258,6 +239,5 @@ export const productsShow: ProductShowType[] = [
         category: "نوشیدنی",
         unit: "بطری",
         qty: 45,
-        is_active: true
     }
 ]

@@ -1,7 +1,15 @@
+import CategorySelect from "@/components/dash/CategorySelectField";
 import DashboardsPageHeader from "@/components/dash/DashboardsPageHeader";
 import { productsShow } from "@/data/DashboardProducts";
 import { AddRounded, CameraRounded, ImageRounded } from "@mui/icons-material";
-import { Box, Button, Card, Typography } from "@mui/material";
+import {
+    Autocomplete,
+    Box,
+    Button,
+    Card,
+    TextField,
+    Typography,
+} from "@mui/material";
 import Link from "next/link";
 
 const Products = () => {
@@ -12,15 +20,28 @@ const Products = () => {
                     محصول
                 </Button>
             </DashboardsPageHeader>
-            <Box>
-                <Typography variant="body1">
-                    سرچ محصولات و فیلتر بندی
-                </Typography>
-            </Box>
+            <div className="grid grid-cols-2 w-full ">
+                <div className=" flex items-center w-full gap-2 ">
+                    <TextField
+                        size="small"
+                        label="جستوجو"
+                        placeholder="نام محصول ، بارکد ، شناسه و ..."
+                        fullWidth
+                    />
+                    <div className="flex w-full">
+                        <CategorySelect />
+                        
+                    </div>
+                </div>
+            </div>
             <Box>
                 <div className="grid grid-cols-4 gap-4">
                     {productsShow.map((product) => (
-                        <Link key={product.id} href={`products/${product.id}`} className="h-full">
+                        <Link
+                            key={product.id}
+                            href={`products/${product.id}`}
+                            className="h-full"
+                        >
                             <Card className="rounded-lg! h-full">
                                 <div className="w-full h-80 flex items-center justify-center">
                                     <ImageRounded color="action" />

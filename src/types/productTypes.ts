@@ -13,7 +13,6 @@ export type ProductType = {
     unit: string;          // واحد شمارش: عدد، کیلو، بسته
     qty: number;           // مقدار موجودی
     min_stock?: number;    // حداقل موجودی برای هشدار (مثلاً اگر کمتر از ۵ شد هشدار بده)
-    is_active?: boolean;   // آیا محصول فعال است یا خیر (حذف نرم)
 }
 
 export type ProductShowType = {
@@ -27,5 +26,4 @@ export type ProductShowType = {
     category: string;      // مثلاً: خوراکی، لبنیات
     qty: number;           // مقدار موجودی
     unit: string;          // واحد شمارش: عدد، کیلو، بسته
-    is_active?: boolean;   // آیا محصول فعال است یا خیر (حذف نرم)
 }
