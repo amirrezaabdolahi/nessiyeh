@@ -30,19 +30,19 @@ export const links: Array<LinkItemType> = [
                 icon: <PeopleOutlineRounded />,
             },
             {
-                name: "سفارشات",
-                href: "/dashboard/orders",
+                name: "نسیه ها",
+                href: "/dashboard/debts",
                 icon: <AddCardRounded />,
-            },
-            {
-                name: "محصولات",
-                href: "/dashboard/products",
-                icon: <ProductionQuantityLimitsRounded />,
             },
             {
                 name: "پرداختی ها",
                 href: "/dashboard/payments",
                 icon: <MoneyRounded />,
+            },
+            {
+                name: "محصولات",
+                href: "/dashboard/products",
+                icon: <ProductionQuantityLimitsRounded />,
             },
         ],
     },
@@ -55,8 +55,8 @@ export const links: Array<LinkItemType> = [
                 icon: <AssessmentRounded />,
             },
             {
-                name: "نسیه ها",
-                href: "/dashboard/debts",
+                name: "تاخیری ها",
+                href: "/dashboard/overdue",
                 icon: <HistoryRounded />,
             },
         ],
