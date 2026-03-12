@@ -3,6 +3,7 @@ import {
     AssessmentRounded,
     DashboardRounded,
     HistoryRounded,
+    MoneyRounded,
     PeopleOutlineRounded,
     PersonOutlineRounded,
     ProductionQuantityLimitsRounded,
@@ -14,7 +15,7 @@ export interface LinkItemType {
     items: Array<{ name: string; href: string; icon: any }>;
 }
 
-export const links: Array<LinkItem> = [
+export const links: Array<LinkItemType> = [
     {
         group: "نمای کلی",
         items: [
@@ -37,6 +38,11 @@ export const links: Array<LinkItem> = [
                 name: "محصولات",
                 href: "/dashboard/products",
                 icon: <ProductionQuantityLimitsRounded />,
+            },
+            {
+                name: "پرداختی ها",
+                href: "/dashboard/payments",
+                icon: <MoneyRounded />,
             },
         ],
     },

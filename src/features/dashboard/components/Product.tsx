@@ -3,7 +3,11 @@ import { ImageRounded } from "@mui/icons-material";
 import { Card, Typography } from "@mui/material";
 import Link from "next/link";
 
-const Product = ({ product } : ProductShowType) => {
+interface ProductProps {
+    product: ProductShowType;
+}
+
+const Product = ({ product }: ProductProps) => {
     return (
         <Link href={`products/${product.id}`} className="h-full">
             <Card className="rounded-lg! h-full">

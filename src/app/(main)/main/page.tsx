@@ -1,7 +1,4 @@
 import Footer from "@/components/main/Footer";
-import SupermarketsMapWrapper from "@/components/SuperMarketMapWrapper";
-import MapSection from "@/components/SupermarketsMap";
-import DescriptionSection from "@/features/main/components/DescriptionSection";
 import FinalCTASection from "@/features/main/components/FinalCTASection";
 import HeroSection from "@/features/main/components/HeroSection";
 import ShowCases from "@/features/main/components/ShowCases";
@@ -17,7 +14,7 @@ const Mainpage = () => {
                 <ShowCases />
             </div>
             <div className="container mx-auto">
-                <DescriptionSection />
+                {/* <DescriptionSection /> */}
             </div>
             <div className="container mx-auto">
                 <FinalCTASection />
