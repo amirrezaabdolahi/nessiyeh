@@ -1,4 +1,3 @@
-"use client";
 import DashboardsPageHeader from "@/components/dash/DashboardsPageHeader";
 import { PaymentBranchName, payments } from "@/data/DashboardPayments";
 import BranchHead from "@/features/dashboard/components/BranchHead";
@@ -23,9 +22,6 @@ const Payments = () => {
                 {payments.map((payment) => (
                     <Box
                         key={payment.id}
-                        onClick={() => {
-                            console.log(payment);
-                        }}
                         className="w-300
                                   xl:w-full
                                   sticky top-0
