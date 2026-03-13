@@ -1,17 +1,11 @@
-import { Customers } from "@/data/DashboardCustomers"
+import { Customers } from "@/data/DashboardCustomers";
 
+const GetCustomer = (id: string | number) => {
+    const numericId = Number(id);
 
+    const customer = Customers.find(customer => customer.id === numericId);
 
-interface GetCustomerProp {
-    id: number | string
-}
+    return customer || null; 
+};
 
-const GetCustomer = ({ id }: GetCustomerProp) => {
-    const customer = Customers.find(customer => customer.id == id)
-    if (customer) {
-        return customer
-    }
-    return false
-}
-
-export default GetCustomer
+export default GetCustomer;

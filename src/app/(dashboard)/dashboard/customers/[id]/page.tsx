@@ -3,14 +3,14 @@ import GetCustomer from "@/features/dashboard/hooks/GetCustomer";
 
 interface customerProps {
     params: Promise<{
-        id: number | string;
+        id: string;
     }>;
 }
 
 const Customer = async ({ params }: customerProps) => {
     const { id } = await params;
 
-    const customer: CustomerType | false = GetCustomer(id);
+    const customer = GetCustomer(id);
 
     console.log(customer);
 
@@ -22,7 +22,7 @@ const Customer = async ({ params }: customerProps) => {
         );
     }
 
-    return <div>Customer</div>;
+    return <div>Customer</div>
 };
 
 export default Customer;
