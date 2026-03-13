@@ -86,20 +86,33 @@ const Customer = async ({ params }: customerProps) => {
                     </Box>
                 </Box>
             </Card>
-            <Card className="flex flex-col rounded-lg! p-4">
-                <Box className="flex items-center justify-between">
-                    <Typography variant="h6" className="font-bold!">
-                        جدول اقساط
-                    </Typography>
-                    <Button
-                        size="small"
-                        variant="contained"
-                        endIcon={<AddRounded />}
-                    >
-                        نسیه جدید
-                    </Button>
-                </Box>
-            </Card>
+            <Box>
+                <Card className="flex flex-col rounded-lg! p-4">
+                    <Box className="flex items-center justify-between">
+                        <Typography variant="h6" className="font-bold!">
+                            جدول اقساط
+                        </Typography>
+                        <Button
+                            size="small"
+                            variant="contained"
+                            endIcon={<AddRounded />}
+                        >
+                            نسیه جدید
+                        </Button>
+                    </Box>
+                </Card>
+                <Card>
+                    <Box>
+                        <Box>
+                            <Typography variant="caption">تاریخ : </Typography>
+                            <Typography variant="body2" >ریال</Typography>
+                        </Box>
+                        <Box>
+                            <Typography variant="body2">مانده : </Typography>
+                        </Box>
+                    </Box>
+                </Card>
+            </Box>
         </div>
     );
 };
