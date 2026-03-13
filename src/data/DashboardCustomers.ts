@@ -1,6 +1,6 @@
 
 
-type Customer = {
+export type CustomerType = {
     id: number,
     username: string,
     phone: string,
@@ -11,7 +11,7 @@ type Customer = {
 }
 
 
-export const Customers: Array<Customer> = [
+export const Customers: Array<CustomerType> = [
     {
         id: 1,
         username: "علیرضا",

@@ -13,6 +13,7 @@ export const categories: Category[] = [
     { id: 5, name: "میوه و سبزیجات", value: "fruits_vegetables" },
     { id: 6, name: "شوینده و بهداشتی", value: "cleaning_hygiene" },
     { id: 7, name: "آرایشی و مراقبتی", value: "cosmetics" },
+    { id: 8, name: "دخانیات", value: "smokes" },
 ];
 
 // تعریف تایپ برای شاخه‌ها (زیرمجموعه‌ها)
