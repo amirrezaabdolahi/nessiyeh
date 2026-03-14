@@ -88,7 +88,7 @@ const Customer = async ({ params }: customerProps) => {
                 <Card
                     className="flex flex-col p-4 border-b border-gray-400"
                     sx={{
-                        borderBottomRightRadius: 0!,
+                        borderBottomRightRadius: 0,
                         borderBottomLeftRadius: 0,
                     }}
                 >
@@ -107,7 +107,7 @@ const Customer = async ({ params }: customerProps) => {
                 </Card>
                 <Card
                     className="flex flex-col px-4 "
-                    sx={{ borderTopRightRadius: 0!, borderTopLeftRadius: 0 }}
+                    sx={{ borderTopRightRadius: 0, borderTopLeftRadius: 0 }}
                 >
                     {payeds?.map((pay) => (
                         <Box
@@ -118,7 +118,10 @@ const Customer = async ({ params }: customerProps) => {
                                 <Typography variant="caption">
                                     تاریخ : {pay.date}
                                 </Typography>
-                                <Typography variant="body1" className="font-bold!">
+                                <Typography
+                                    variant="body1"
+                                    className="font-bold!"
+                                >
                                     {pay.amount} ریال
                                 </Typography>
                             </Box>

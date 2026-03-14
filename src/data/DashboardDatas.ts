@@ -1,5 +1,5 @@
-export type ChangeType = "increase" | "decrease" | "neutral";
-export type MuiColors = "primary" | "secondary" | "error" | "warning" | "info" | "success";
+import { ChangeType, MuiColors } from "@/types/handiTypes";
+
 
 export interface DashboardCardData {
     id: string;
