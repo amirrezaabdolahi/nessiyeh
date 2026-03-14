@@ -1,19 +1,22 @@
-import { Customers, CustomersPayments } from "@/data/DashboardCustomers";
+import { Customers, CustomersPayments, CustomerType, CustomerPayedType } from "@/data/DashboardCustomers";
 
-const GetCustomer = (id: string | number) => {
+// تعریف تایپ خروجی تابع
+type CustomerResult = {
+    customer: CustomerType | undefined;
+    payeds: CustomerPayedType[] | undefined;
+};
+
+const GetCustomer = (id: string | number): CustomerResult => {
     const numericId = Number(id);
 
+    // پیدا کردن مشتری
     const customer = Customers.find(customer => customer.id === numericId);
 
-    let payeds ;
+    // گرفتن لیست پرداخت‌ها (اگر مشتری پیدا شد)
+    // اگر customer وجود نداشته باشه، undefined برمی‌گرده
+    const payeds = customer ? CustomersPayments[customer.id] : undefined;
 
-    if (customer) {
-        payeds = CustomersPayments[customer?.id]
-    }
-
-
-
-    return customer || null;
+    return { customer, payeds };
 };
 
 export default GetCustomer;

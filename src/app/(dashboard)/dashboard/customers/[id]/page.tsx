@@ -13,9 +13,7 @@ interface customerProps {
 const Customer = async ({ params }: customerProps) => {
     const { id } = await params;
 
-    const customer = GetCustomer(id);
-
-    console.log(customer);
+    const { customer, payeds } = GetCustomer(id);
 
     if (!customer) {
         return (
@@ -87,7 +85,13 @@ const Customer = async ({ params }: customerProps) => {
                 </Box>
             </Card>
             <Box>
-                <Card className="flex flex-col rounded-lg! p-4">
+                <Card
+                    className="flex flex-col p-4 border-b border-gray-400"
+                    sx={{
+                        borderBottomRightRadius: 0!,
+                        borderBottomLeftRadius: 0,
+                    }}
+                >
                     <Box className="flex items-center justify-between">
                         <Typography variant="h6" className="font-bold!">
                             جدول اقساط
@@ -101,16 +105,46 @@ const Customer = async ({ params }: customerProps) => {
                         </Button>
                     </Box>
                 </Card>
-                <Card>
-                    <Box>
-                        <Box>
-                            <Typography variant="caption">تاریخ : </Typography>
-                            <Typography variant="body2" >ریال</Typography>
+                <Card
+                    className="flex flex-col px-4 "
+                    sx={{ borderTopRightRadius: 0!, borderTopLeftRadius: 0 }}
+                >
+                    {payeds?.map((pay) => (
+                        <Box
+                            key={pay.id}
+                            className="flex items-center justify-between py-2 border-b border-gray-300"
+                        >
+                            <Box>
+                                <Typography variant="caption">
+                                    تاریخ : {pay.date}
+                                </Typography>
+                                <Typography variant="body1" className="font-bold!">
+                                    {pay.amount} ریال
+                                </Typography>
+                            </Box>
+                            <Box className="flex items-center gap-2">
+                                <Typography variant="body1">
+                                    حساب شده : {pay.paid}
+                                </Typography>
+                                <Typography variant="body2">
+                                    مانده : {pay.amount - pay.paid} ریال
+                                </Typography>
+                                {pay.status === "settled" ? (
+                                    <Button disabled variant="outlined">
+                                        پرداخت شده
+                                    </Button>
+                                ) : pay.status === "partial" ? (
+                                    <Button color="warning" variant="outlined">
+                                        پرداخت
+                                    </Button>
+                                ) : (
+                                    <Button color="error" variant="outlined">
+                                        پرداخت
+                                    </Button>
+                                )}
+                            </Box>
                         </Box>
-                        <Box>
-                            <Typography variant="body2">مانده : </Typography>
-                        </Box>
-                    </Box>
+                    ))}
                 </Card>
             </Box>
         </div>

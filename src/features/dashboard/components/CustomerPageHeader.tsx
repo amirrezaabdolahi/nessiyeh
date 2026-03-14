@@ -6,7 +6,7 @@ import React from "react";
 const CustomerPageHeader = () => {
     return (
         <div className="w-full flex items-center justify-between">
-            <Link href={"dashboard/customers"}>
+            <Link href={"/dashboard/customers"}>
                 <Button size="small"
                     startIcon={<ArrowForwardIosRounded fontSize="small" />}
                     variant="outlined"
