@@ -1,9 +1,7 @@
 import DashboardsPageHeader from "@/components/dash/DashboardsPageHeader";
-import { dashboardCards } from "@/data/DashboardDatas";
 import { ReportCardsData } from "@/data/ReportsData";
 import { InstallDesktopRounded } from "@mui/icons-material";
 import { Box, Button, Card, Typography } from "@mui/material";
-import React from "react";
 
 const Report = () => {
     return (
