@@ -40,6 +40,7 @@ const Report = () => {
                         </Typography>
                     </Card>
                 ))}
+                
             </Box>
         </div>
     );
