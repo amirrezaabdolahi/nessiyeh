@@ -17,6 +17,7 @@
         "@mui/material-nextjs": "^7.3.8",
         "@reduxjs/toolkit": "^2.11.2",
         "dayjs": "^1.11.19",
+        "framer-motion": "^10.18.0",
         "jalaliday": "^3.1.1",
         "leaflet": "^1.9.4",
         "next": "^16.1.6",
@@ -24,6 +25,7 @@
         "react-dom": "^19.2.4",
         "react-leaflet": "^5.0.0",
         "react-redux": "^9.2.0",
+        "react-toastify": "^11.0.5",
         "stylis": "^4.3.6",
         "stylis-plugin-rtl": "^2.1.1"
     },

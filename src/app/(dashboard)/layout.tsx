@@ -3,6 +3,7 @@ import DashboardNavBar from "@/features/dashboard/components/DashboardNavBar";
 import SideBar from "@/features/dashboard/components/SideBar";
 import { Notifications } from "@mui/icons-material";
 import { Avatar, Card, IconButton, TextField, Typography } from "@mui/material";
+import SlideUpAnimation from "@/components/SlideUpAnimation";
 
 export default function MainLayout({
     children,
@@ -23,7 +24,7 @@ export default function MainLayout({
                 </aside>
 
                 <main className="col-span-10 p-4 overflow-auto">
-                    {children}
+                    <SlideUpAnimation>{children}</SlideUpAnimation>
                 </main>
             </div>
         </div>

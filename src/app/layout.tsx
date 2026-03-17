@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import ThemeRegistry from "@/providers/ThemeRegistry";
-
+import { ToastContainer } from "react-toastify";
 
 const vazirmatn = localFont({
     src: [
@@ -31,6 +31,7 @@ export default function RootLayout({
     return (
         <html lang="fa" dir="rtl">
             <body className={`${vazirmatn.variable}`}>
+                <ToastContainer />
                 <ThemeRegistry>{children}</ThemeRegistry>
             </body>
         </html>

@@ -1,4 +1,5 @@
 import DashboardsPageHeader from "@/components/dash/DashboardsPageHeader";
+import SlideUpBoxAnimation from "@/components/SlideUpBoxAnimation";
 import { dashboardCards } from "@/data/DashboardDatas";
 import { formatedTodayDate } from "@/utils/date";
 import {
@@ -35,30 +36,32 @@ const Dashboard = () => {
                     gap: 2,
                 }}
             >
-                {dashboardCards.map((card) => (
-                    <Card
-                        key={card.id}
-                        sx={{
-                            flex: "1 1 0",
-                            minWidth: 0,
-                            p: 2,
-                            borderTop: 2,
-                            borderColor: `${card.color}.main`,
-                        }}
-                    >
-                        <Typography variant="h6" className="text-lg!">
-                            {card.title}
-                        </Typography>
-                        <Typography variant="h4" className="text-lg!">
-                            {card.value} {card.unit}
-                        </Typography>
-                        <Typography variant="body2">
-                            تغییر: {card.change}٪ ({card.changeType})
-                        </Typography>
-                        <Typography variant="body2">
-                            دوره: {card.period}
-                        </Typography>
-                    </Card>
+                {dashboardCards.map((card, index) => (
+                    <SlideUpBoxAnimation delay={index / 15}>
+                        <Card
+                            key={card.id}
+                            sx={{
+                                flex: "1 1 0",
+                                minWidth: 0,
+                                p: 2,
+                                borderTop: 2,
+                                borderColor: `${card.color}.main`,
+                            }}
+                        >
+                            <Typography variant="h6" className="text-lg!">
+                                {card.title}
+                            </Typography>
+                            <Typography variant="h4" className="text-lg!">
+                                {card.value} {card.unit}
+                            </Typography>
+                            <Typography variant="body2">
+                                تغییر: {card.change}٪ ({card.changeType})
+                            </Typography>
+                            <Typography variant="body2">
+                                دوره: {card.period}
+                            </Typography>
+                        </Card>
+                    </SlideUpBoxAnimation>
                 ))}
             </Box>
 
