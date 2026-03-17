@@ -1,5 +1,6 @@
 import BranchSelect from "@/components/dash/BranchSelectField";
 import CategorySelect from "@/components/dash/CategorySelectField";
+import Container from "@/components/dash/Container";
 import DashboardsPageHeader from "@/components/dash/DashboardsPageHeader";
 import { productsShow } from "@/data/DashboardProducts";
 import Product from "@/features/dashboard/components/Product";
@@ -16,7 +17,7 @@ import Link from "next/link";
 
 const Products = () => {
     return (
-        <div className="h-full flex flex-col gap-8 ">
+        <Container>
             <DashboardsPageHeader title="حساب ها" caption="200 محصول">
                 <Button endIcon={<AddRounded />} variant="contained">
                     محصول
@@ -43,7 +44,7 @@ const Products = () => {
                     ))}
                 </div>
             </Box>
-        </div>
+        </Container>
     );
 };
 

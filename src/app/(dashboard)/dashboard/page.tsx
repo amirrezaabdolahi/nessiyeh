@@ -1,3 +1,4 @@
+import Container from "@/components/dash/Container";
 import DashboardsPageHeader from "@/components/dash/DashboardsPageHeader";
 import SlideUpBoxAnimation from "@/components/SlideUpBoxAnimation";
 import { dashboardCards } from "@/data/DashboardDatas";
@@ -11,7 +12,7 @@ import { Box, Button, Card, IconButton, Typography } from "@mui/material";
 
 const Dashboard = () => {
     return (
-        <div className="h-full flex flex-col gap-8">
+        <Container>
             <DashboardsPageHeader
                 title="روز خوش ، امیررضا"
                 caption={` ارومیه نگین ،${formatedTodayDate()}`}
@@ -37,9 +38,8 @@ const Dashboard = () => {
                 }}
             >
                 {dashboardCards.map((card, index) => (
-                    <SlideUpBoxAnimation delay={index / 15}>
+                    <SlideUpBoxAnimation key={card.id} delay={index / 15 + 0.1}>
                         <Card
-                            key={card.id}
                             sx={{
                                 flex: "1 1 0",
                                 minWidth: 0,
@@ -197,7 +197,7 @@ const Dashboard = () => {
                     </Box>
                 </Card>
             </div>
-        </div>
+        </Container>
     );
 };
 

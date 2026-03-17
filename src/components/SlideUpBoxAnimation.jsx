@@ -16,7 +16,7 @@ const SlideUpBoxAnimation = ({ children, delay = 0 }) => {
                 visible: {
                     opacity: 1,
                     y: 0, // پایان: جای اصلی و کاملاً مرئی
-                    transition: { delay, duration: 0.3, ease: "easeInOut" },
+                    transition: { delay, duration: 0.3, ease: "easeOut" },
                 },
             }}
         >

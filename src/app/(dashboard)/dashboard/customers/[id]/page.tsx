@@ -1,3 +1,4 @@
+import Container from "@/components/dash/Container";
 import { CustomerType } from "@/data/DashboardCustomers";
 import CustomerPageHeader from "@/features/dashboard/components/CustomerPageHeader";
 import GetCustomer from "@/features/dashboard/hooks/GetCustomer";
@@ -24,7 +25,7 @@ const Customer = async ({ params }: customerProps) => {
     }
 
     return (
-        <div className="h-full flex flex-col gap-8">
+        <Container>
             <CustomerPageHeader />
             <Card className="flex items-center justify-between p-6 rounded-lg!">
                 <Box className="flex items-center gap-4">
@@ -150,7 +151,7 @@ const Customer = async ({ params }: customerProps) => {
                     ))}
                 </Card>
             </Box>
-        </div>
+        </Container>
     );
 };
 

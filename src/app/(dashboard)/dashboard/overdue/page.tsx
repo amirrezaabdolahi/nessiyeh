@@ -1,12 +1,12 @@
+import Container from "@/components/dash/Container";
 import DashboardsPageHeader from "@/components/dash/DashboardsPageHeader";
 import { overdueBranchs, OverdueReports } from "@/data/DashboardOverdue";
 import BranchHead from "@/features/dashboard/components/BranchHead";
-import { Avatar, Box, Button, Typography } from "@mui/material";
-import React from "react";
+import { Box, Button, Typography } from "@mui/material";
 
 const Overdues = () => {
     return (
-        <div className="w-full h-full flex gap-8 flex-col">
+        <Container>
             <DashboardsPageHeader
                 title="اقساط سررسید گذشته"
                 caption="7 تا نسیه که تاخیر دارن ، جمع مبالغ 43 م ریال"
@@ -64,7 +64,7 @@ const Overdues = () => {
                     </Box>
                 ))}
             </Box>
-        </div>
+        </Container>
     );
 };
 

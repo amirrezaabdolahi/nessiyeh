@@ -3,10 +3,11 @@ import SlideUpBoxAnimation from "@/components/SlideUpBoxAnimation";
 import { ReportCardsData } from "@/data/ReportsData";
 import { InstallDesktopRounded } from "@mui/icons-material";
 import { Box, Button, Card, Typography } from "@mui/material";
+import Container from "@/components/dash/Container";
 
 const Report = () => {
     return (
-        <div className="flex h-full flex-col gap-8">
+        <Container>
             <DashboardsPageHeader
                 title="گزارش ماهیانه"
                 caption="اردیبهشت 1404 ، فروشگاه نگین"
@@ -23,9 +24,8 @@ const Report = () => {
                 }}
             >
                 {ReportCardsData.map((card, index) => (
-                    <SlideUpBoxAnimation delay={index / 15}>
+                    <SlideUpBoxAnimation key={card.id} delay={index / 15}>
                         <Card
-                            key={card.id}
                             sx={{
                                 flex: "1 1 0",
                                 minWidth: 0,
@@ -44,7 +44,7 @@ const Report = () => {
                     </SlideUpBoxAnimation>
                 ))}
             </Box>
-        </div>
+        </Container>
     );
 };
 

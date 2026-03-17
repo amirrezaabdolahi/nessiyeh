@@ -1,5 +1,6 @@
 "use client";
 
+import Container from "@/components/dash/Container";
 import DashboardsPageHeader from "@/components/dash/DashboardsPageHeader";
 import { CreditBranchName, Credits } from "@/data/DashboardCredits";
 import BranchHead from "@/features/dashboard/components/BranchHead";
@@ -9,7 +10,7 @@ import Link from "next/link";
 
 const Orders = () => {
     return (
-        <div className="h-full flex flex-col gap-8 ">
+        <Container>
             <DashboardsPageHeader
                 title="حساب ها"
                 caption="128 حساب ، 180000000 ریال جمع حساب ها"
@@ -102,7 +103,7 @@ const Orders = () => {
                     </Box>
                 ))}
             </Box>
-        </div>
+        </Container>
     );
 };
 

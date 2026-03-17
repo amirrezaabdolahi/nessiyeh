@@ -1,3 +1,4 @@
+import Container from "@/components/dash/Container";
 import DashboardsPageHeader from "@/components/dash/DashboardsPageHeader";
 import { PaymentBranchName, payments } from "@/data/DashboardPayments";
 import BranchHead from "@/features/dashboard/components/BranchHead";
@@ -7,7 +8,7 @@ import Link from "next/link";
 
 const Payments = () => {
     return (
-        <div className="h-full flex flex-col gap-8 ">
+        <Container>
             <DashboardsPageHeader
                 title="پرداختی ها"
                 caption="42 م ریال مبلغ جمع شده این ماه"
@@ -73,7 +74,7 @@ const Payments = () => {
                     </Box>
                 ))}
             </Box>
-        </div>
+        </Container>
     );
 };
 

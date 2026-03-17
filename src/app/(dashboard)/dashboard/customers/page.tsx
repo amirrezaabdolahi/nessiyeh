@@ -1,4 +1,5 @@
 "use client";
+import Container from "@/components/dash/Container";
 import DashboardsPageHeader from "@/components/dash/DashboardsPageHeader";
 import { Customers, CustomersBranchName } from "@/data/DashboardCustomers";
 import BranchHead from "@/features/dashboard/components/BranchHead";
@@ -8,7 +9,7 @@ import Link from "next/link";
 
 const DashboardCustomers = () => {
     return (
-        <div className="h-full flex flex-col gap-8">
+        <Container>
             <DashboardsPageHeader
                 title="مشتری ها"
                 caption="247 مشتری ثبت نام کرده ، 6 نا مشتری این ماه"
@@ -110,7 +111,7 @@ const DashboardCustomers = () => {
                     </Link>
                 ))}
             </Box>
-        </div>
+        </Container>
     );
 };
 
