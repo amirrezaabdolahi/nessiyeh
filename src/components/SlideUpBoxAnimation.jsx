@@ -12,11 +12,11 @@ const SlideUpBoxAnimation = ({ children, delay = 0 }) => {
             exit="hidden"
             className="flex-1"
             variants={{
-                hidden: { opacity: 0, y: 10 }, // شروع: کمی پایین‌تر و نامرئی
+                hidden: { opacity: 0, y: 10 },
                 visible: {
                     opacity: 1,
                     y: 0, // پایان: جای اصلی و کاملاً مرئی
-                    transition: { delay, duration: 0.3, ease: "easeInOut" }, // سرعت و نرمی حرکت
+                    transition: { delay, duration: 0.3, ease: "easeInOut" },
                 },
             }}
         >
