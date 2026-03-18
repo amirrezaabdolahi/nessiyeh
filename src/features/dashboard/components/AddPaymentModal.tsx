@@ -1,0 +1,112 @@
+"use client";
+
+import { CustomersDataAutoComplete } from "@/data/AutoCompletesData";
+import { AddRounded, CloseRounded } from "@mui/icons-material";
+import {
+    Autocomplete,
+    Box,
+    Button,
+    IconButton,
+    Modal,
+    TextField,
+    Typography,
+} from "@mui/material";
+import { useState } from "react";
+
+const style = {
+    position: "absolute" as "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    bgcolor: "background.paper",
+};
+
+const AddPaymentModal = () => {
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+    return (
+        <>
+            <Button
+                endIcon={<AddRounded fontSize="small" />}
+                variant="contained"
+                onClick={handleOpen}
+            >
+                پرداخت
+            </Button>
+
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+                className=" bg-black/10 backdrop-blur-xs transition-all "
+            >
+                <Box sx={style} className="rounded-lg w-100">
+                    <Box className="p-2 flex items-center justify-between w-full border-b border-gray-200">
+                        <Typography variant="subtitle1" className="font-bold!">
+                            ثبت پرداختی
+                        </Typography>
+                        <IconButton color="error" onClick={handleClose}>
+                            <CloseRounded />
+                        </IconButton>
+                    </Box>
+                    <Box className="p-4">
+                        <form className="flex flex-col gap-4">
+                            <div className="flex flex-col gap-2">
+                                <Typography variant="body2">مشتری</Typography>
+                                <Autocomplete
+                                    disablePortal
+                                    id="category-select"
+                                    options={CustomersDataAutoComplete}
+                                    getOptionLabel={(option) => option.username}
+                                    renderOption={(props, option) => {
+                                        return (
+                                            <li {...props} key={option.id}>
+                                                {option.username}
+                                            </li>
+                                        );
+                                    }}
+                                    renderInput={(params) => (
+                                        <TextField
+                                            {...params}
+                                            placeholder="انتخاب کنید..."
+                                        />
+                                    )}
+                                    size="small"
+                                    fullWidth
+                                />
+                            </div>
+                            <div className="flex flex-col gap-2">
+                                <Typography variant="body2">نسیه</Typography>
+                                <Autocomplete
+                                    disablePortal
+                                    id="category-select"
+                                    options={CustomersDataAutoComplete}
+                                    getOptionLabel={(option) => option.username}
+                                    renderOption={(props, option) => {
+                                        return (
+                                            <li {...props} key={option.id}>
+                                                {option.username}
+                                            </li>
+                                        );
+                                    }}
+                                    renderInput={(params) => (
+                                        <TextField
+                                            {...params}
+                                            placeholder="انتخاب کنید..."
+                                        />
+                                    )}
+                                    size="small"
+                                    fullWidth
+                                />
+                            </div>
+                        </form>
+                    </Box>
+                </Box>
+            </Modal>
+        </>
+    );
+};
+
+export default AddPaymentModal;

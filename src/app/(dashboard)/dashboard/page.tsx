@@ -2,6 +2,7 @@ import Container from "@/components/dash/Container";
 import DashboardsPageHeader from "@/components/dash/DashboardsPageHeader";
 import SlideUpBoxAnimation from "@/components/SlideUpBoxAnimation";
 import { dashboardCards } from "@/data/DashboardDatas";
+import AddPaymentModal from "@/features/dashboard/components/AddPaymentModal";
 import { formatedTodayDate } from "@/utils/date";
 import {
     AddRounded,
@@ -23,12 +24,7 @@ const Dashboard = () => {
                 >
                     صفحه نسیه
                 </Button>
-                <Button
-                    endIcon={<AddRounded fontSize="small" />}
-                    variant="contained"
-                >
-                    فروش
-                </Button>
+                <AddPaymentModal />
             </DashboardsPageHeader>
             <Box
                 sx={{
