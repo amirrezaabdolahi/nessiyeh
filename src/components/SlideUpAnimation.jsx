@@ -16,7 +16,7 @@ const SlideUpAnimation = ({ children }) => {
                 visible: {
                     opacity: 1,
                     y: 0, // پایان: جای اصلی و کاملاً مرئی
-                    transition: { duration: 0.3, ease: "easeInOut" }, // سرعت و نرمی حرکت
+                    transition: { duration: 0.3, ease: "easeOut" }, // سرعت و نرمی حرکت
                 },
             }}
         >
