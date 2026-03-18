@@ -1,3 +1,4 @@
+import GetCustomer from "@/features/dashboard/hooks/GetCustomer"
 import { Customers } from "./DashboardCustomers"
 
 
@@ -12,4 +13,14 @@ export const CustomersDataAutoComplete: Array<CustomersUsernameAndId> = Customer
     }
 })
 
-export const SelectedCustomersDebts
+export const SelectedCustomersDebts = (id: string | number) => {
+    const { payeds } = GetCustomer(id);
+    console.log(payeds);
+    return payeds
+}
+
+export const methodsAutocomplete = [
+    { id: 1, name: "کارت", value: 'card' },
+    { id: 2, name: "درگاه", value: 'bankTransfer' },
+    { id: 3, name: "نقد", value: 'cash' },
+]

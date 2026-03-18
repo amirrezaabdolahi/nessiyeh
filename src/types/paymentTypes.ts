@@ -1,8 +1,10 @@
+import { MetodsType } from "./methods";
+
 export interface Payment {
     id: string;
     customer: string;
     amount: number;
-    method: "کارت" | "درگاه" | "نقد";
+    method: MetodsType;
     date: string;
     status: "success" | "faild";
 }

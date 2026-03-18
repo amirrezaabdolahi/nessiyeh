@@ -1,6 +1,12 @@
 "use client";
 
-import { CustomersDataAutoComplete } from "@/data/AutoCompletesData";
+import {
+    CustomersDataAutoComplete,
+    methodsAutocomplete,
+    SelectedCustomersDebts,
+} from "@/data/AutoCompletesData";
+import { CustomerType } from "@/data/DashboardCustomers";
+import { Payment } from "@/types/paymentTypes";
 import { AddRounded, CloseRounded } from "@mui/icons-material";
 import {
     Autocomplete,
@@ -25,6 +31,13 @@ const AddPaymentModal = () => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const [selectedCustomer, setSelectedCustomer] = useState<{
+        id: string | number | null;
+        username: string | null;
+    } | null>(null);
+
+    const [debts, setDebts] = useState<Payment[] | null>(null);
+
     return (
         <>
             <Button
@@ -42,7 +55,7 @@ const AddPaymentModal = () => {
                 aria-describedby="modal-modal-description"
                 className=" bg-black/10 backdrop-blur-xs transition-all "
             >
-                <Box sx={style} className="rounded-lg w-100">
+                <Box sx={style} className="rounded-lg w-150 p-4">
                     <Box className="p-2 flex items-center justify-between w-full border-b border-gray-200">
                         <Typography variant="subtitle1" className="font-bold!">
                             ثبت پرداختی
@@ -66,6 +79,9 @@ const AddPaymentModal = () => {
                                                 {option.username}
                                             </li>
                                         );
+                                    }}
+                                    onChange={(event, newValue) => {
+                                        setSelectedCustomer(newValue);
                                     }}
                                     renderInput={(params) => (
                                         <TextField
@@ -91,6 +107,7 @@ const AddPaymentModal = () => {
                                             </li>
                                         );
                                     }}
+                                    disabled={!selectedCustomer && !debts}
                                     renderInput={(params) => (
                                         <TextField
                                             {...params}
@@ -101,6 +118,66 @@ const AddPaymentModal = () => {
                                     fullWidth
                                 />
                             </div>
+                            <div className="flex items-center gap-2 w-full">
+                                <div className="w-full">
+                                    <Typography variant="body2">
+                                        مبلغ (ریال)
+                                    </Typography>
+                                    <TextField
+                                        placeholder="مبلغ به ریال"
+                                        size="small"
+                                        fullWidth
+                                    />
+                                </div>
+                                <div className="w-full">
+                                    <Typography variant="body2">روش</Typography>
+                                    <Autocomplete
+                                        disablePortal
+                                        id="category-select"
+                                        options={methodsAutocomplete}
+                                        getOptionLabel={(option) => option.name}
+                                        renderOption={(props, option) => {
+                                            return (
+                                                <li {...props} key={option.id}>
+                                                    {option.name}
+                                                </li>
+                                            );
+                                        }}
+                                        disabled={!selectedCustomer && !debts}
+                                        renderInput={(params) => (
+                                            <TextField
+                                                {...params}
+                                                placeholder="انتخاب کنید..."
+                                            />
+                                        )}
+                                        size="small"
+                                        fullWidth
+                                    />
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-2 w-full">
+                                <div className="w-full">
+                                    <Typography variant="body2">
+                                        تاریخ
+                                    </Typography>
+                                    <TextField
+                                        placeholder="مبلغ به ریال"
+                                        size="small"
+                                        fullWidth
+                                    />
+                                </div>
+                                <div className="w-full">
+                                    <Typography variant="body2">
+                                        شماره پیگیری
+                                    </Typography>
+                                    <TextField
+                                        placeholder="مبلغ به ریال"
+                                        size="small"
+                                        fullWidth
+                                    />
+                                </div>
+                            </div>
+                            <TextField multiline label="توضیحات" size="small" />
                         </form>
                     </Box>
                 </Box>

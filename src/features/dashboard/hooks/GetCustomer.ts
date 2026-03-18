@@ -16,6 +16,8 @@ const GetCustomer = (id: string | number): CustomerResult => {
     // اگر customer وجود نداشته باشه، undefined برمی‌گرده
     const payeds = customer ? CustomersPayments[customer.id] : undefined;
 
+    console.log(payeds);
+
     return { customer, payeds };
 };
 
