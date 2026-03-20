@@ -22,7 +22,7 @@ const Dashboard = () => {
                     endIcon={<AddRounded fontSize="small" />}
                     variant="outlined"
                 >
-                    صفحه نسیه
+                    نسیه
                 </Button>
                 <AddPaymentModal />
             </DashboardsPageHeader>

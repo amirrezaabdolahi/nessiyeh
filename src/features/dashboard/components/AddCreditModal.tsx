@@ -28,7 +28,7 @@ const style = {
     bgcolor: "background.paper",
 };
 
-const AddPaymentModal = () => {
+const AddCreditModal = () => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -191,4 +191,4 @@ const AddPaymentModal = () => {
     );
 };
 
-export default AddPaymentModal;
+export default AddCreditModal;
