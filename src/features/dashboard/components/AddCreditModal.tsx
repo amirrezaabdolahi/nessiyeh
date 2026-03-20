@@ -6,7 +6,9 @@ import {
     SelectedCustomersDebts,
 } from "@/data/AutoCompletesData";
 import { CustomerType } from "@/data/DashboardCustomers";
+import { products } from "@/data/DashboardProducts";
 import { Payment } from "@/types/paymentTypes";
+import { ProductType } from "@/types/productTypes";
 import { AddRounded, CloseRounded } from "@mui/icons-material";
 import {
     Autocomplete,
@@ -37,16 +39,28 @@ const AddCreditModal = () => {
         username: string | null;
     } | null>(null);
 
-    const [debts, setDebts] = useState<Payment[] | null>(null);
+    const [selectedProducts, setSelectedProducts] = useState<
+        ProductType[] | null
+    >(null);
+
+    const [cost , setCost] = useState<number>(0)
+
+    const handleCost = () => {
+        let total  = 0;
+        selectedProducts?.map(product => {
+            total += product.sell_price
+        })
+        setCost(total)
+    }
 
     return (
         <>
             <Button
                 endIcon={<AddRounded fontSize="small" />}
-                variant="contained"
+                variant="outlined"
                 onClick={handleOpen}
             >
-                پرداخت
+                نسیه
             </Button>
 
             <Modal
@@ -59,7 +73,7 @@ const AddCreditModal = () => {
                 <Box sx={style} className="rounded-lg w-150 p-4">
                     <Box className="p-2 flex items-center justify-between w-full border-b border-gray-200">
                         <Typography variant="subtitle1" className="font-bold!">
-                            ثبت پرداختی
+                            ثبت نسیه
                         </Typography>
                         <IconButton color="error" onClick={handleClose}>
                             <CloseRounded />
@@ -95,20 +109,25 @@ const AddCreditModal = () => {
                                 />
                             </div>
                             <div className="flex flex-col gap-2">
-                                <Typography variant="body2">نسیه</Typography>
+                                <Typography variant="body2">مصولات</Typography>
                                 <Autocomplete
                                     disablePortal
+                                    multiple
                                     id="category-select"
-                                    options={CustomersDataAutoComplete}
-                                    getOptionLabel={(option) => option.username}
+                                    options={products}
+                                    getOptionLabel={(option) => option.name}
                                     renderOption={(props, option) => {
                                         return (
                                             <li {...props} key={option.id}>
-                                                {option.username}
+                                                {option.name}
                                             </li>
                                         );
                                     }}
-                                    disabled={!selectedCustomer && !debts}
+                                    onChange={(event, newValue) => {
+                                        setSelectedProducts(old => newValue);
+                                        handleCost()
+                                    }}
+                                    disabled={!selectedCustomer}
                                     renderInput={(params) => (
                                         <TextField
                                             {...params}
@@ -128,6 +147,7 @@ const AddCreditModal = () => {
                                         placeholder="مبلغ به ریال"
                                         size="small"
                                         fullWidth
+                                        value={cost}
                                     />
                                 </div>
                                 <div className="w-full">
@@ -144,7 +164,7 @@ const AddCreditModal = () => {
                                                 </li>
                                             );
                                         }}
-                                        disabled={!selectedCustomer && !debts}
+                                        disabled={!selectedCustomer}
                                         renderInput={(params) => (
                                             <TextField
                                                 {...params}
@@ -182,8 +202,14 @@ const AddCreditModal = () => {
                         </form>
                     </Box>
                     <div className="flex gap-2 border-t border-gray-300 pt-4 ">
-                        <Button variant="contained">ثبت پرداختی</Button>
-                        <Button variant="outlined" color="error" onClick={handleClose} >انصراف</Button>
+                        <Button variant="contained">ثبت نسیه</Button>
+                        <Button
+                            variant="outlined"
+                            color="error"
+                            onClick={handleClose}
+                        >
+                            انصراف
+                        </Button>
                     </div>
                 </Box>
             </Modal>

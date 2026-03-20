@@ -2,6 +2,7 @@ import Container from "@/components/dash/Container";
 import DashboardsPageHeader from "@/components/dash/DashboardsPageHeader";
 import SlideUpBoxAnimation from "@/components/SlideUpBoxAnimation";
 import { dashboardCards } from "@/data/DashboardDatas";
+import AddCreditModal from "@/features/dashboard/components/AddCreditModal";
 import AddPaymentModal from "@/features/dashboard/components/AddPaymentModal";
 import { formatedTodayDate } from "@/utils/date";
 import {
@@ -18,12 +19,7 @@ const Dashboard = () => {
                 title="روز خوش ، امیررضا"
                 caption={` ارومیه نگین ،${formatedTodayDate()}`}
             >
-                <Button
-                    endIcon={<AddRounded fontSize="small" />}
-                    variant="outlined"
-                >
-                    نسیه
-                </Button>
+                <AddCreditModal />
                 <AddPaymentModal />
             </DashboardsPageHeader>
             <Box
