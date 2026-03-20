@@ -24,3 +24,9 @@ export const methodsAutocomplete = [
     { id: 2, name: "درگاه", value: 'bankTransfer' },
     { id: 3, name: "نقد", value: 'cash' },
 ]
+
+export const installmentTime : Array<{id : number , name : string , value : string}> = [
+    {id : 1 , name : "روزانه"  , value : "daily"},
+    {id : 2 , name : "هفتگانی"  , value : "weekly"},
+    {id : 3 , name : "ماهانه"  , value : "monthly"},
+]

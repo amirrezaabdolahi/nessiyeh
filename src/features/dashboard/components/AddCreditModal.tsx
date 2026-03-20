@@ -2,6 +2,7 @@
 
 import {
     CustomersDataAutoComplete,
+    installmentTime,
     methodsAutocomplete,
     SelectedCustomersDebts,
 } from "@/data/AutoCompletesData";
@@ -20,7 +21,7 @@ import {
     TextField,
     Typography,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const style = {
     position: "absolute" as "absolute",
@@ -43,15 +44,23 @@ const AddCreditModal = () => {
         ProductType[] | null
     >(null);
 
-    const [cost , setCost] = useState<number>(0)
+    const [cost, setCost] = useState<number>(0);
 
     const handleCost = () => {
-        let total  = 0;
-        selectedProducts?.map(product => {
-            total += product.sell_price
-        })
-        setCost(total)
-    }
+        if (!selectedProducts || selectedProducts.length === 0) {
+            setCost(0);
+            return;
+        }
+        const total = selectedProducts.reduce(
+            (acc, product) => acc + product.sell_price,
+            0,
+        );
+        setCost(total);
+    };
+
+    useEffect(() => {
+        handleCost();
+    }, [selectedProducts]);
 
     return (
         <>
@@ -124,8 +133,7 @@ const AddCreditModal = () => {
                                         );
                                     }}
                                     onChange={(event, newValue) => {
-                                        setSelectedProducts(old => newValue);
-                                        handleCost()
+                                        setSelectedProducts((old) => newValue);
                                     }}
                                     disabled={!selectedCustomer}
                                     renderInput={(params) => (
@@ -151,11 +159,25 @@ const AddCreditModal = () => {
                                     />
                                 </div>
                                 <div className="w-full">
-                                    <Typography variant="body2">روش</Typography>
+                                    <Typography variant="body2">
+                                        تاریخ
+                                    </Typography>
+                                    <TextField
+                                        placeholder="مبلغ به ریال"
+                                        size="small"
+                                        fullWidth
+                                    />
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-2 w-full">
+                                <div className="w-full">
+                                    <Typography variant="body2">
+                                        مدت پرداخت
+                                    </Typography>
                                     <Autocomplete
                                         disablePortal
                                         id="category-select"
-                                        options={methodsAutocomplete}
+                                        options={installmentTime}
                                         getOptionLabel={(option) => option.name}
                                         renderOption={(props, option) => {
                                             return (
@@ -171,28 +193,6 @@ const AddCreditModal = () => {
                                                 placeholder="انتخاب کنید..."
                                             />
                                         )}
-                                        size="small"
-                                        fullWidth
-                                    />
-                                </div>
-                            </div>
-                            <div className="flex items-center gap-2 w-full">
-                                <div className="w-full">
-                                    <Typography variant="body2">
-                                        تاریخ
-                                    </Typography>
-                                    <TextField
-                                        placeholder="مبلغ به ریال"
-                                        size="small"
-                                        fullWidth
-                                    />
-                                </div>
-                                <div className="w-full">
-                                    <Typography variant="body2">
-                                        شماره پیگیری
-                                    </Typography>
-                                    <TextField
-                                        placeholder="مبلغ به ریال"
                                         size="small"
                                         fullWidth
                                     />
