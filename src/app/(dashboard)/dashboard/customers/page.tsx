@@ -2,6 +2,7 @@
 import Container from "@/components/dash/Container";
 import DashboardsPageHeader from "@/components/dash/DashboardsPageHeader";
 import { Customers, CustomersBranchName } from "@/data/DashboardCustomers";
+import AddCustomerModal from "@/features/dashboard/components/AddCustomerModal";
 import BranchHead from "@/features/dashboard/components/BranchHead";
 import { AddRounded } from "@mui/icons-material";
 import { Avatar, Box, Button, Card, Chip, Typography } from "@mui/material";
@@ -14,9 +15,7 @@ const DashboardCustomers = () => {
                 title="مشتری ها"
                 caption="247 مشتری ثبت نام کرده ، 6 نا مشتری این ماه"
             >
-                <Button endIcon={<AddRounded />} variant="contained">
-                    مشتری
-                </Button>
+                <AddCustomerModal />
             </DashboardsPageHeader>
 
             <Box className="w-full overflow-x-scroll xl:overflow-auto">

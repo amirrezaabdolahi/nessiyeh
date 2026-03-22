@@ -3,19 +3,14 @@
 import {
     CustomersDataAutoComplete,
     installmentTime,
-    methodsAutocomplete,
-    SelectedCustomersDebts,
 } from "@/data/AutoCompletesData";
-import { CustomerType } from "@/data/DashboardCustomers";
 import { products } from "@/data/DashboardProducts";
-import { Payment } from "@/types/paymentTypes";
 import { ProductType } from "@/types/productTypes";
 import { AddRounded, CloseRounded } from "@mui/icons-material";
 import {
     Autocomplete,
     Box,
     Button,
-    ButtonBase,
     IconButton,
     Modal,
     TextField,
