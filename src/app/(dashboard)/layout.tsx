@@ -18,6 +18,9 @@ export default function MainLayout({
             </div>
 
             {/* Main Area */}
+
+            <div className="absolute w-10 right-0 top-0 bottom-0 bg-red-500 hover:bg-red-400"></div>
+
             <div className="grid grid-cols-12">
                 <aside className="col-span-2">
                     <SideBar />
