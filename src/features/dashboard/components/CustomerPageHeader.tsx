@@ -2,12 +2,15 @@ import { ArrowBackRounded, ArrowForwardIosRounded } from "@mui/icons-material";
 import { Box, Button } from "@mui/material";
 import Link from "next/link";
 import React from "react";
+import AddPaymentModal from "./AddPaymentModal";
+import AddCreditModal from "./AddCreditModal";
 
 const CustomerPageHeader = () => {
     return (
         <div className="w-full flex items-center justify-between">
             <Link href={"/dashboard/customers"}>
-                <Button size="small"
+                <Button
+                    size="small"
                     startIcon={<ArrowForwardIosRounded fontSize="small" />}
                     variant="outlined"
                 >
@@ -15,8 +18,8 @@ const CustomerPageHeader = () => {
                 </Button>
             </Link>
             <Box className="flex gap-2">
-                <Button size="small" variant="outlined">پرداخت</Button>
-                <Button size="small" variant="contained">نسیه جدید</Button>
+                <AddCreditModal />
+                <AddPaymentModal />
             </Box>
         </div>
     );
