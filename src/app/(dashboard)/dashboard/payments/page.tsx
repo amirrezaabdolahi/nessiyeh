@@ -1,6 +1,7 @@
 import Container from "@/components/dash/Container";
 import DashboardsPageHeader from "@/components/dash/DashboardsPageHeader";
 import { PaymentBranchName, payments } from "@/data/DashboardPayments";
+import AddPaymentModal from "@/features/dashboard/components/AddPaymentModal";
 import BranchHead from "@/features/dashboard/components/BranchHead";
 import { AddRounded } from "@mui/icons-material";
 import { Box, Button, Typography } from "@mui/material";
@@ -13,9 +14,7 @@ const Payments = () => {
                 title="پرداختی ها"
                 caption="42 م ریال مبلغ جمع شده این ماه"
             >
-                <Button endIcon={<AddRounded />} variant="contained">
-                    پرداخت
-                </Button>
+                <AddPaymentModal />
             </DashboardsPageHeader>
 
             <Box className="w-full overflow-x-scroll xl:overflow-auto">
