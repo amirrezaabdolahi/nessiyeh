@@ -3,6 +3,7 @@ import CategorySelect from "@/components/dash/CategorySelectField";
 import Container from "@/components/dash/Container";
 import DashboardsPageHeader from "@/components/dash/DashboardsPageHeader";
 import { productsShow } from "@/data/DashboardProducts";
+import AddProductModal from "@/features/dashboard/components/AddProductModal";
 import Product from "@/features/dashboard/components/Product";
 import { AddRounded, CameraRounded, ImageRounded } from "@mui/icons-material";
 import {
@@ -19,9 +20,7 @@ const Products = () => {
     return (
         <Container>
             <DashboardsPageHeader title="حساب ها" caption="200 محصول">
-                <Button endIcon={<AddRounded />} variant="contained">
-                    محصول
-                </Button>
+                <AddProductModal />
             </DashboardsPageHeader>
             <div className="grid grid-cols-2 w-full ">
                 <div className=" flex items-center w-full gap-4 ">
