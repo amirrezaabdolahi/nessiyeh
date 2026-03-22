@@ -3,6 +3,7 @@
 import Container from "@/components/dash/Container";
 import DashboardsPageHeader from "@/components/dash/DashboardsPageHeader";
 import { CreditBranchName, Credits } from "@/data/DashboardCredits";
+import AddCreditModal from "@/features/dashboard/components/AddCreditModal";
 import BranchHead from "@/features/dashboard/components/BranchHead";
 import { AddRounded } from "@mui/icons-material";
 import { Box, Button, Typography } from "@mui/material";
@@ -15,9 +16,7 @@ const Orders = () => {
                 title="حساب ها"
                 caption="128 حساب ، 180000000 ریال جمع حساب ها"
             >
-                <Button endIcon={<AddRounded />} variant="contained">
-                    حساب
-                </Button>
+                <AddCreditModal />
             </DashboardsPageHeader>
             <Box className="w-full overflow-x-scroll xl:overflow-auto">
                 <Box className="flex gap-2 mb-4">
