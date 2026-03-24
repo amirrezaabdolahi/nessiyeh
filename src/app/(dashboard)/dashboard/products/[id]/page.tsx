@@ -7,7 +7,7 @@ const Product = async ({ params }: { params: { id: string | number } }) => {
 
     return (
         <Container>
-            <ProductPageHeader />
+            <ProductPageHeader id={id} />
         </Container>
     );
 };
