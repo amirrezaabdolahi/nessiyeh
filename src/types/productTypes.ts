@@ -13,7 +13,7 @@ export type ProductType = {
     unit: string;          // واحد شمارش: عدد، کیلو، بسته
     qty: number;           // مقدار موجودی
     min_stock?: number;    // حداقل موجودی برای هشدار (مثلاً اگر کمتر از ۵ شد هشدار بده)
-}
+} | undefined
 
 export type ProductShowType = {
     id: string;
