@@ -12,6 +12,11 @@ const Product = async ({ params }: { params: { id: string } }) => {
         style: "currency",
         currency: "IRR",
     });
+    const dateFormatter = new Intl.DateTimeFormat("fa-IR", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+    });
     console.log(product);
 
     if (!product) {
@@ -66,7 +71,11 @@ const Product = async ({ params }: { params: { id: string } }) => {
                         </Typography>
                     </div>
                 </div>
-                <Avatar variant="rounded" className="w-70! h-90!" alt={product.name} >
+                <Avatar
+                    variant="rounded"
+                    className="w-70! h-90!"
+                    alt={product.name}
+                >
                     {product.name[0]}
                 </Avatar>
             </Card>
