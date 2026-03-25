@@ -10,7 +10,7 @@ export type ProductType = {
     image?: string;
     category: string;      // مثلاً: خوراکی، لبنیات
     branch?: string;       // مثلاً: چیپس، ماست
-    unit: string;          // واحد شمارش: عدد، کیلو، بسته
+    unit: UnitTypes;          // واحد شمارش: عدد، کیلو، بسته
     qty: number;           // مقدار موجودی
     min_stock?: number;    // حداقل موجودی برای هشدار (مثلاً اگر کمتر از ۵ شد هشدار بده)
 } | undefined
@@ -25,5 +25,7 @@ export type ProductShowType = {
     image?: string;
     category: string;      // مثلاً: خوراکی، لبنیات
     qty: number;           // مقدار موجودی
-    unit: string;          // واحد شمارش: عدد، کیلو، بسته
+    unit: UnitTypes;          // واحد شمارش: عدد، کیلو، بسته
 }
+
+export type UnitTypes = "عدد" | "کیلو" | "بسته" | "بطری" | "قوطی" | "گالن"
