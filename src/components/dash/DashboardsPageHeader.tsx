@@ -12,7 +12,7 @@ const DashboardsPageHeader = ({
     children: React.ReactNode;
 }) => {
     return (
-        <Box className="flex items-center justify-between">
+        <Box className="flex items-center flex-wrap gap-4 justify-between">
             <Box className="flex flex-col items-start gap-2">
                 <Typography variant="h6">{title}</Typography>
                 <Typography variant="body2">

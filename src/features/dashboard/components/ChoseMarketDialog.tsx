@@ -1,6 +1,5 @@
 "use client";
 import {
-    Avatar,
     Button,
     Dialog,
     DialogTitle,
@@ -11,7 +10,6 @@ import {
     ListItemButton,
     ListItemText,
 } from "@mui/material";
-import { blue } from "@mui/material/colors";
 import React from "react";
 import { Room } from "@mui/icons-material";
 import { markets } from "@/data/navbarfakedata";
@@ -39,7 +37,7 @@ const ChoseMarketDialog = () => {
             <Button
                 variant="outlined"
                 endIcon={<Room fontSize="small" />}
-                className="rounded-full! w-3xs"
+                className="rounded-full! lg:w-3xs"
                 onClick={handleClickOpen}
             >
                 {selectedValue}
@@ -67,9 +65,9 @@ function SimpleDialog(props: SimpleDialogProps) {
     };
 
     return (
-        <Dialog onClose={handleClose} open={open}>
+        <Dialog onClose={handleClose} open={open} >
             <DialogTitle>انتخاب مارکت</DialogTitle>
-            <List sx={{ pt: 0 }} className="w-lg rounded-xl! overflow-hidden">
+            <List sx={{ pt: 0 }} className="w-90 lg:w-lg! rounded-xl! overflow-hidden">
                 {markets.map((market) => (
                     <ListItem disablePadding key={market}>
                         <ListItemButton

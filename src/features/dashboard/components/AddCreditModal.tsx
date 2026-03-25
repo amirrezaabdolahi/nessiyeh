@@ -74,7 +74,7 @@ const AddCreditModal = () => {
                 aria-describedby="modal-modal-description"
                 className=" bg-black/10 backdrop-blur-xs transition-all "
             >
-                <Box sx={style} className="rounded-lg w-150 p-4">
+                <Box sx={style} className="rounded-lg w-[90%] max-w-150 p-4">
                     <Box className="p-2 flex items-center justify-between w-full border-b border-gray-200">
                         <Typography variant="subtitle1" className="font-bold!">
                             ثبت نسیه

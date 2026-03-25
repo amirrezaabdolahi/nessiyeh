@@ -1,6 +1,7 @@
 import DashboardNavBar from "@/features/dashboard/components/DashboardNavBar";
 import SideBar from "@/features/dashboard/components/SideBar";
 import SlideUpAnimation from "@/components/SlideUpAnimation";
+import MobileMenu from "@/components/dash/MobileMenu";
 
 export default function MainLayout({
     children,
@@ -19,6 +20,7 @@ export default function MainLayout({
                 <aside className="hidden lg:col-span-2 lg:block">
                     <SideBar />
                 </aside>
+                <MobileMenu />
 
                 <main className="col-span-12! lg:col-span-10! p-4 overflow-auto">
                     <SlideUpAnimation>{children}</SlideUpAnimation>
