@@ -22,6 +22,7 @@ const DashboardNavBar = () => {
                     size="small"
                     label="جستجو"
                     placeholder="فروش ، خرید ، ..."
+                    className="hidden! lg:block!"
                 />
                 <IconButton size="large">
                     <Notifications />

@@ -1,8 +1,5 @@
-import ChoseMarketDialog from "@/features/dashboard/components/ChoseMarketDialog";
 import DashboardNavBar from "@/features/dashboard/components/DashboardNavBar";
 import SideBar from "@/features/dashboard/components/SideBar";
-import { Notifications } from "@mui/icons-material";
-import { Avatar, Card, IconButton, TextField, Typography } from "@mui/material";
 import SlideUpAnimation from "@/components/SlideUpAnimation";
 
 export default function MainLayout({
@@ -19,11 +16,11 @@ export default function MainLayout({
 
             {/* Main Area */}
             <div className="grid grid-cols-12">
-                <aside className="col-span-2">
+                <aside className="hidden lg:col-span-2 lg:block">
                     <SideBar />
                 </aside>
 
-                <main className="col-span-10 p-4 overflow-auto">
+                <main className="col-span-12! lg:col-span-10! p-4 overflow-auto">
                     <SlideUpAnimation>{children}</SlideUpAnimation>
                 </main>
             </div>
