@@ -27,7 +27,7 @@ const Customer = async ({ params }: customerProps) => {
     return (
         <Container>
             <CustomerPageHeader />
-            <Card className="flex items-center justify-between p-6 rounded-lg!">
+            <Card className="flex flex-wrap items-center justify-center md:justify-between p-6 rounded-lg!">
                 <Box className="flex items-center gap-4">
                     <Avatar
                         alt={customer.username}
