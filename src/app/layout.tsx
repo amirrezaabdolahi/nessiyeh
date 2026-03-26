@@ -31,7 +31,10 @@ export default function RootLayout({
     return (
         <html lang="fa" dir="rtl">
             <body className={`${vazirmatn.variable}`}>
-                <ToastContainer />
+                <ToastContainer
+                    position="bottom-center"
+                    
+                />
                 <ThemeRegistry>{children}</ThemeRegistry>
             </body>
         </html>

@@ -32,8 +32,8 @@ const Product = async ({ params }: { params: { id: string } }) => {
     return (
         <Container>
             <ProductPageHeader id={id} />
-            <Card className="p-4 flex items-center justify-between">
-                <div className="flex flex-col gap-2">
+            <Card className="p-4 flex items-center justify-center md:justify-between flex-wrap gap-4">
+                <div className="flex flex-col md:items-start items-center gap-2">
                     <div className="flex items-center gap-4">
                         <Typography variant="h6">{product.name}</Typography>
                         {product.sku && <CopyButtonSku text={product.sku} />}

@@ -18,6 +18,7 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import ModalContainer from "./ModalContainer";
+import { toast } from "react-toastify";
 
 const AddCreditModal = () => {
     const [open, setOpen] = useState(false);
@@ -46,6 +47,24 @@ const AddCreditModal = () => {
         setCost(total);
     };
 
+    async function handleCreateCredit() {
+        // Define the promise
+        const myPromise = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                // Simulate success or error
+                const success = true;
+                if (success) resolve("Data sent successfully!");
+                else reject("Something went wrong!");
+            }, 2000);
+        });
+
+        // Pass the promise to toast
+        toast.promise(myPromise, {
+            pending: "درحال ثبت نسیه...",
+            success: "نسیه ثبت شد",
+            error: "اوهو ارور داریم !",
+        });
+    }
     useEffect(() => {
         handleCost();
     }, [selectedProducts]);
@@ -190,7 +209,12 @@ const AddCreditModal = () => {
                         </form>
                     </Box>
                     <div className="flex gap-2 border-t border-gray-300 pt-4 ">
-                        <Button variant="contained">ثبت نسیه</Button>
+                        <Button
+                            onClick={handleCreateCredit}
+                            variant="contained"
+                        >
+                            ثبت نسیه
+                        </Button>
                         <Button
                             variant="outlined"
                             color="error"

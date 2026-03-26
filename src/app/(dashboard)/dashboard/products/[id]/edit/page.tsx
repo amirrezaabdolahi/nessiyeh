@@ -31,7 +31,7 @@ const ProductEdit = async ({ params }: { params: { id: string } }) => {
                     </Button>
                 </Link>
             </div>
-            <div className="flex w-full items-center justify-center gap-4">
+            <div className="flex w-full items-center justify-center flex-wrap gap-4">
                 <Card className="flex flex-col gap-4 p-4">
                     <TextField
                         value={product.name}
