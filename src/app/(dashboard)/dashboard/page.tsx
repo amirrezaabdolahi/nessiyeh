@@ -22,18 +22,11 @@ const Dashboard = () => {
                 <AddCreditModal />
                 <AddPaymentModal />
             </DashboardsPageHeader>
-            <Box
-                sx={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    gap: 2,
-                }}
-            >
+            <Box className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-5">
                 {dashboardCards.map((card, index) => (
                     <SlideUpBoxAnimation key={card.id} delay={index / 15 + 0.1}>
                         <Card
                             sx={{
-                                flex: "1 1 0",
                                 minWidth: 0,
                                 p: 2,
                                 borderTop: 2,
@@ -57,22 +50,22 @@ const Dashboard = () => {
                 ))}
             </Box>
 
-            <div className="grid grid-cols-6 grid-rows-2 gap-4 h-full">
-                <Card className=" row-span-1 col-span-4 bg-gray-100! rounded-lg ">
+            <div className="grid grid-cols-1 lg:grid-cols-6  gap-4 h-full">
+                <Card className="col-span-full lg:col-span-4 bg-gray-100! rounded-lg ">
                     <Box className="border-b border-gray-300 p-2">
                         <Typography variant="body2">
                             نمودار دریافتی ها سی روز
                         </Typography>
                     </Box>
                 </Card>
-                <Card className=" row-span-1 col-span-2 bg-gray-100! rounded-lg ">
+                <Card className="col-span-full lg:col-span-2 bg-gray-100! rounded-lg ">
                     <Box className="border-b border-gray-300 p-2">
                         <Typography variant="body2">
                             نمودار دریافتی ها سی روز
                         </Typography>
                     </Box>
                 </Card>
-                <Card className=" row-span-1 col-span-4 bg-gray-100! rounded-lg ">
+                <Card className="col-span-full lg:col-span-4 bg-gray-100! rounded-lg ">
                     <Box className="border-b border-gray-300 p-2">
                         <Typography variant="body2">تراکنش های اخیر</Typography>
                     </Box>
@@ -183,7 +176,7 @@ const Dashboard = () => {
                         </Box>
                     </Box>
                 </Card>
-                <Card className=" row-span-1 col-span-2 bg-gray-100! rounded-lg ">
+                <Card className="col-span-full lg:col-span-2 bg-gray-100! rounded-lg ">
                     <Box className="border-b border-gray-300 p-2">
                         <Typography variant="body2">نسیه های اخیر</Typography>
                     </Box>
