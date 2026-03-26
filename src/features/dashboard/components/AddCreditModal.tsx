@@ -17,14 +17,7 @@ import {
     Typography,
 } from "@mui/material";
 import { useEffect, useState } from "react";
-
-const style = {
-    position: "absolute" as "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    bgcolor: "background.paper",
-};
+import ModalContainer from "./ModalContainer";
 
 const AddCreditModal = () => {
     const [open, setOpen] = useState(false);
@@ -74,7 +67,7 @@ const AddCreditModal = () => {
                 aria-describedby="modal-modal-description"
                 className=" bg-black/10 backdrop-blur-xs transition-all "
             >
-                <Box sx={style} className="rounded-lg w-[90%] max-w-150 p-4">
+                <ModalContainer>
                     <Box className="p-2 flex items-center justify-between w-full border-b border-gray-200">
                         <Typography variant="subtitle1" className="font-bold!">
                             ثبت نسیه
@@ -206,7 +199,7 @@ const AddCreditModal = () => {
                             انصراف
                         </Button>
                     </div>
-                </Box>
+                </ModalContainer>
             </Modal>
         </>
     );
