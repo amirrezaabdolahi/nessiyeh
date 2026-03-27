@@ -4,7 +4,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import { categories } from "@/utils/filteringData";
 
-export default function () {
+export default function CategorySelect () {
     return (
         <Autocomplete
             disablePortal
