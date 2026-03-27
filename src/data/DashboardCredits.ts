@@ -11,7 +11,7 @@ export const CreditBranchName: Array<string> = [
     "وضعیت"
 ]
 
-type Credit = {
+export type CreditType = {
     id: string,
     customer: string,
     description?: string,
@@ -21,7 +21,7 @@ type Credit = {
     status: "active" | "overdue" | "settled"
 }
 
-export const Credits : Array<Credit> = [
+export const Credits : Array<CreditType> = [
     {
         id : 'CR-0041',
         customer : "علی رضا",
