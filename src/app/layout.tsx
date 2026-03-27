@@ -33,6 +33,7 @@ export default function RootLayout({
             <body className={`${vazirmatn.variable}`}>
                 <ToastContainer
                     position="bottom-center"
+                    autoClose={1500}
                 />
                 <ThemeRegistry>{children}</ThemeRegistry>
             </body>

@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import ModalContainer from "./ModalContainer";
+import { toast } from "react-toastify";
 
 const style = {
     position: "absolute" as "absolute",
@@ -28,6 +29,25 @@ const AddProductModal = () => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    async function handleAddProduct() {
+            // Define the promise
+            const myPromise = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    // Simulate success or error
+                    const success = true;
+                    if (success) resolve("Data sent successfully!");
+                    else reject("Something went wrong!");
+                }, 2000);
+            });
+    
+            // Pass the promise to toast
+            toast.promise(myPromise, {
+                pending: "درحال ثبت محصول...",
+                success: "محصول ثبت شد",
+                error: "اوهو ارور داریم !",
+            });
+        }
 
     return (
         <>
@@ -184,7 +204,7 @@ const AddProductModal = () => {
                         </form>
                     </Box>
                     <div className="flex gap-2 border-t border-gray-300 pt-4 ">
-                        <Button variant="contained">ثبت مشتری</Button>
+                        <Button variant="contained" onClick={handleAddProduct} >ثبت محصول</Button>
                         <Button
                             variant="outlined"
                             color="error"

@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import ModalContainer from "./ModalContainer";
+import { toast } from "react-toastify";
 
 const style = {
     position: "absolute" as "absolute",
@@ -26,6 +27,25 @@ const AddCustomerModal = () => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    async function handleCreateCustomer() {
+        // Define the promise
+        const myPromise = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                // Simulate success or error
+                const success = true;
+                if (success) resolve("Data sent successfully!");
+                else reject("Something went wrong!");
+            }, 2000);
+        });
+
+        // Pass the promise to toast
+        toast.promise(myPromise, {
+            pending: "درحال ثبت مشتری...",
+            success: "مشتری ثبت شد",
+            error: "اوهو ارور داریم !",
+        });
+    }
 
     return (
         <>
@@ -127,11 +147,16 @@ const AddCustomerModal = () => {
                                     />
                                 </div>
                             </div>
-                            <TextField multiline rows={3} label="توضیحات" size="small" />
+                            <TextField
+                                multiline
+                                rows={3}
+                                label="توضیحات"
+                                size="small"
+                            />
                         </form>
                     </Box>
                     <div className="flex gap-2 border-t border-gray-300 pt-4 ">
-                        <Button variant="contained">ثبت مشتری</Button>
+                        <Button variant="contained" onClick={handleCreateCustomer} >ثبت مشتری</Button>
                         <Button
                             variant="outlined"
                             color="error"

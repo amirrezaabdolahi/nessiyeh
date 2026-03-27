@@ -20,6 +20,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import ModalContainer from "./ModalContainer";
+import { toast } from "react-toastify";
 
 const style = {
     position: "absolute" as "absolute",
@@ -39,6 +40,25 @@ const AddPaymentModal = () => {
     } | null>(null);
 
     const [debts, setDebts] = useState<Payment[] | null>(null);
+
+    async function handleSubmitPayment() {
+        // Define the promise
+        const myPromise = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                // Simulate success or error
+                const success = true;
+                if (success) resolve("Data sent successfully!");
+                else reject("Something went wrong!");
+            }, 2000);
+        });
+
+        // Pass the promise to toast
+        toast.promise(myPromise, {
+            pending: "درحال ثبت پرداخت...",
+            success: "پرداخت ثبت شد",
+            error: "اوهو ارور داریم !",
+        });
+    }
 
     return (
         <>
@@ -179,12 +199,28 @@ const AddPaymentModal = () => {
                                     />
                                 </div>
                             </div>
-                            <TextField multiline rows={3} label="توضیحات" size="small" />
+                            <TextField
+                                multiline
+                                rows={3}
+                                label="توضیحات"
+                                size="small"
+                            />
                         </form>
                     </Box>
                     <div className="flex gap-2 border-t border-gray-300 pt-4 ">
-                        <Button variant="contained">ثبت پرداختی</Button>
-                        <Button variant="outlined" color="error" onClick={handleClose} >انصراف</Button>
+                        <Button
+                            variant="contained"
+                            onClick={handleSubmitPayment}
+                        >
+                            ثبت پرداختی
+                        </Button>
+                        <Button
+                            variant="outlined"
+                            color="error"
+                            onClick={handleClose}
+                        >
+                            انصراف
+                        </Button>
                     </div>
                 </ModalContainer>
             </Modal>

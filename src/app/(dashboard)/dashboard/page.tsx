@@ -5,12 +5,8 @@ import { dashboardCards } from "@/data/DashboardDatas";
 import AddCreditModal from "@/features/dashboard/components/AddCreditModal";
 import AddPaymentModal from "@/features/dashboard/components/AddPaymentModal";
 import { formatedTodayDate } from "@/utils/date";
-import {
-    AddRounded,
-    ArrowDownwardRounded,
-    ArrowDropDownRounded,
-} from "@mui/icons-material";
-import { Box, Button, Card, IconButton, Typography } from "@mui/material";
+import { ArrowDownwardRounded } from "@mui/icons-material";
+import { Box, Card, IconButton, Typography } from "@mui/material";
 
 const Dashboard = () => {
     return (
