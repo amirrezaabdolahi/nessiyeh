@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import ThemeRegistry from "@/providers/ThemeRegistry";
 import { ToastContainer } from "react-toastify";
+import StoreProvider from "@/providers/ReduxProvider";
 
 const vazirmatn = localFont({
     src: [
@@ -31,11 +32,10 @@ export default function RootLayout({
     return (
         <html lang="fa" dir="rtl">
             <body className={`${vazirmatn.variable}`}>
-                <ToastContainer
-                    position="bottom-center"
-                    autoClose={1500}
-                />
-                <ThemeRegistry>{children}</ThemeRegistry>
+                <ToastContainer position="bottom-center" autoClose={1500} />
+                <ThemeRegistry>
+                    <StoreProvider>{children}</StoreProvider>
+                </ThemeRegistry>
             </body>
         </html>
     );
