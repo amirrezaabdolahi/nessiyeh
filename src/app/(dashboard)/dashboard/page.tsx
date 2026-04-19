@@ -2,9 +2,9 @@ import Container from "@/components/dash/Container";
 import DashboardsPageHeader from "@/components/dash/DashboardsPageHeader";
 import AddCreditModal from "@/features/dashboard/components/AddCreditModal";
 import AddPaymentModal from "@/features/dashboard/components/AddPaymentModal";
-import DashboardsCards from "@/features/dashboard/dashboard/components/DashboardsCards";
-import DashboardsCharts from "@/features/dashboard/dashboard/components/DashboardsCharts";
-import DashboardsRecents from "@/features/dashboard/dashboard/components/DashboardsRecents";
+import DashboardsCards from "@/features/dashboard/childs/dashboard/components/DashboardsCards";
+import DashboardsCharts from "@/features/dashboard/childs/dashboard/components/DashboardsCharts";
+import DashboardsRecents from "@/features/dashboard/childs/dashboard/components/DashboardsRecents";
 import { formatedTodayDate } from "@/utils/date";
 
 
