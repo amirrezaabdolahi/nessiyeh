@@ -5,7 +5,7 @@ import { Customers, CustomersBranchName } from "@/data/DashboardCustomers";
 import AddCustomerModal from "@/features/dashboard/components/AddCustomerModal";
 import BranchHead from "@/features/dashboard/components/BranchHead";
 import PagesFilterLinks from "@/features/dashboard/components/PagesFilterLinks";
-import CustomerRow from "@/features/dashboard/customers/components/CustomerRow";
+import CustomerRow from "@/features/dashboard/childs/components/CustomerRow";
 import { Box } from "@mui/material";
 import Link from "next/link";
 

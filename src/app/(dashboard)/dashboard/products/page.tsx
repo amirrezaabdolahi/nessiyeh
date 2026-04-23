@@ -3,7 +3,7 @@ import DashboardsPageHeader from "@/components/dash/DashboardsPageHeader";
 import { productsShow } from "@/data/DashboardProducts";
 import AddProductModal from "@/features/dashboard/components/AddProductModal";
 import Product from "@/features/dashboard/components/Product";
-import ProductsSearch from "@/features/dashboard/products/components/ProductsSearch";
+import ProductsSearch from "@/features/dashboard/childs/products/components/ProductsSearch";
 
 const Products = () => {
     return (

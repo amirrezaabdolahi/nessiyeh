@@ -4,7 +4,7 @@ import { CreditBranchName, Credits } from "@/data/DashboardCredits";
 import AddCreditModal from "@/features/dashboard/components/AddCreditModal";
 import BranchHead from "@/features/dashboard/components/BranchHead";
 import PagesFilterLinks from "@/features/dashboard/components/PagesFilterLinks";
-import DebtsCreaditsRows from "@/features/dashboard/debts/components/DebtsCreaditsRows";
+import DebtsCreaditsRows from "@/features/dashboard/childs/debts/components/DebtsCreaditsRows";
 import { Box } from "@mui/material";
 
 const Orders = () => {

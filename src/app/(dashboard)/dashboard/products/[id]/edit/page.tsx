@@ -2,7 +2,7 @@ import BranchSelect from "@/components/dash/BranchSelectField";
 import CategorySelect from "@/components/dash/CategorySelectField";
 import Container from "@/components/dash/Container";
 import SelectUnitField from "@/features/dashboard/components/SelectUnitField";
-import GetProduct from "@/features/dashboard/products/api/GetProduct";
+import GetProduct from "@/features/dashboard/childs/products/api/GetProduct";
 import { ArrowForwardIosRounded } from "@mui/icons-material";
 import { Avatar, Button, Card, TextField, Typography } from "@mui/material";
 import Link from "next/link";

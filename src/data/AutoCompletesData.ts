@@ -2,7 +2,7 @@ import GetCustomer from "@/features/dashboard/hooks/GetCustomer"
 import { Customers } from "./DashboardCustomers"
 
 
-interface CustomersUsernameAndId {
+export interface CustomersUsernameAndId {
     id: string | number
     username: string
 }

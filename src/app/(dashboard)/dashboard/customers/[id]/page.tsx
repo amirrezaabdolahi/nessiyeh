@@ -1,6 +1,6 @@
 import Container from "@/components/dash/Container";
 import CustomerPageHeader from "@/features/dashboard/components/CustomerPageHeader";
-import CustomersPage from "@/features/dashboard/customers/components/CustomersPage";
+import CustomersPage from "@/features/dashboard/childs/components/CustomersPage";
 import GetCustomer from "@/features/dashboard/hooks/GetCustomer";
 
 interface customerProps {

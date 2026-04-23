@@ -19,11 +19,14 @@ import {
 import { useEffect, useState } from "react";
 import ModalContainer from "./ModalContainer";
 import { toast } from "react-toastify";
+import { useAppSelector, useAppDispatch } from "@/lib/redux/hooks";
+import { debtsSliceActions } from "../slices/debtsFormSlice";
 
 const AddCreditModal = () => {
+    const dispatch = useAppDispatch();
+    const formData = useAppSelector((s) => s.debtsForm);
+
     const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
     const [selectedCustomer, setSelectedCustomer] = useState<{
         id: string | number | null;
         username: string | null;
@@ -34,6 +37,11 @@ const AddCreditModal = () => {
     >(null);
 
     const [cost, setCost] = useState<number>(0);
+
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const handleCost = () => {
         if (!selectedProducts || selectedProducts.length === 0) {
@@ -55,6 +63,7 @@ const AddCreditModal = () => {
                 const success = true;
                 if (success) resolve("Data sent successfully!");
                 else reject("Something went wrong!");
+                dispatch(debtsSliceActions.resetForm());
             }, 2000);
         });
 
@@ -68,6 +77,11 @@ const AddCreditModal = () => {
     useEffect(() => {
         handleCost();
     }, [selectedProducts]);
+
+    const handleClear = () => {
+        dispatch(debtsSliceActions.resetForm())
+        handleClose()
+    }
 
     return (
         <>
@@ -84,7 +98,7 @@ const AddCreditModal = () => {
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
-                className=" bg-black/10 backdrop-blur-xs transition-all "
+                className=" bg-black/10 backdrop-blur-xs transition-all"
             >
                 <ModalContainer>
                     <Box className="p-2 flex items-center justify-between w-full border-b border-gray-200">
@@ -104,6 +118,7 @@ const AddCreditModal = () => {
                                     id="category-select"
                                     options={CustomersDataAutoComplete}
                                     getOptionLabel={(option) => option.username}
+                                    value={formData.customer}
                                     renderOption={(props, option) => {
                                         return (
                                             <li {...props} key={option.id}>
@@ -113,6 +128,12 @@ const AddCreditModal = () => {
                                     }}
                                     onChange={(event, newValue) => {
                                         setSelectedCustomer(newValue);
+                                        dispatch(
+                                            debtsSliceActions.updateForm({
+                                                field: "customer",
+                                                value: newValue,
+                                            }),
+                                        );
                                     }}
                                     renderInput={(params) => (
                                         <TextField
@@ -132,6 +153,7 @@ const AddCreditModal = () => {
                                     id="category-select"
                                     options={products}
                                     getOptionLabel={(option) => option.name}
+                                    value={formData.products}
                                     renderOption={(props, option) => {
                                         return (
                                             <li {...props} key={option.id}>
@@ -141,6 +163,12 @@ const AddCreditModal = () => {
                                     }}
                                     onChange={(event, newValue) => {
                                         setSelectedProducts((old) => newValue);
+                                        dispatch(
+                                            debtsSliceActions.updateForm({
+                                                field: "products",
+                                                value: newValue,
+                                            }),
+                                        );
                                     }}
                                     disabled={!selectedCustomer}
                                     renderInput={(params) => (
@@ -162,7 +190,15 @@ const AddCreditModal = () => {
                                         placeholder="مبلغ به ریال"
                                         size="small"
                                         fullWidth
-                                        value={cost}
+                                        value={formData.price}
+                                        onChange={(e) => {
+                                            dispatch(
+                                                debtsSliceActions.updateForm({
+                                                    field: "price",
+                                                    value: cost,
+                                                }),
+                                            );
+                                        }}
                                     />
                                 </div>
                                 <div className="w-full">
@@ -173,39 +209,33 @@ const AddCreditModal = () => {
                                         placeholder="مبلغ به ریال"
                                         size="small"
                                         fullWidth
-                                    />
-                                </div>
-                            </div>
-                            <div className="flex items-center gap-2 w-full">
-                                <div className="w-full">
-                                    <Typography variant="body2">
-                                        مدت پرداخت
-                                    </Typography>
-                                    <Autocomplete
-                                        disablePortal
-                                        id="category-select"
-                                        options={installmentTime}
-                                        getOptionLabel={(option) => option.name}
-                                        renderOption={(props, option) => {
-                                            return (
-                                                <li {...props} key={option.id}>
-                                                    {option.name}
-                                                </li>
+                                        value={formData.date}
+                                        onChange={(e) => {
+                                            dispatch(
+                                                debtsSliceActions.updateForm({
+                                                    field: "date",
+                                                    value: e.target.value,
+                                                }),
                                             );
                                         }}
-                                        disabled={!selectedCustomer}
-                                        renderInput={(params) => (
-                                            <TextField
-                                                {...params}
-                                                placeholder="انتخاب کنید..."
-                                            />
-                                        )}
-                                        size="small"
-                                        fullWidth
                                     />
                                 </div>
                             </div>
-                            <TextField multiline label="توضیحات" size="small" />
+
+                            <TextField
+                                multiline
+                                label="توضیحات"
+                                size="small"
+                                value={formData.description}
+                                onChange={(e) => {
+                                    dispatch(
+                                        debtsSliceActions.updateForm({
+                                            field: "description",
+                                            value: e.target.value,
+                                        }),
+                                    );
+                                }}
+                            />
                         </form>
                     </Box>
                     <div className="flex gap-2 border-t border-gray-300 pt-4 ">
@@ -218,7 +248,7 @@ const AddCreditModal = () => {
                         <Button
                             variant="outlined"
                             color="error"
-                            onClick={handleClose}
+                            onClick={handleClear}
                         >
                             انصراف
                         </Button>

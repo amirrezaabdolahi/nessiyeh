@@ -1,7 +1,7 @@
 import Container from "@/components/dash/Container";
 import CopyButtonSku from "@/features/dashboard/components/CopyButtonSku";
 import ProductPageHeader from "@/features/dashboard/components/ProductPageHeader";
-import GetProduct from "@/features/dashboard/products/api/GetProduct";
+import GetProduct from "@/features/dashboard/childs/products/api/GetProduct";
 import { Avatar, Button, Card, Typography } from "@mui/material";
 
 const Product = async ({ params }: { params: { id: string } }) => {
