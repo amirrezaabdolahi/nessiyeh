@@ -2,17 +2,15 @@
 
 import {
     CustomersDataAutoComplete,
+    CustomersUsernameAndId,
     methodsAutocomplete,
-    SelectedCustomersDebts,
 } from "@/data/AutoCompletesData";
-import { CustomerType } from "@/data/DashboardCustomers";
 import { Payment } from "@/types/paymentTypes";
 import { AddRounded, CloseRounded } from "@mui/icons-material";
 import {
     Autocomplete,
     Box,
     Button,
-    ButtonBase,
     IconButton,
     Modal,
     TextField,
@@ -21,23 +19,20 @@ import {
 import { useState } from "react";
 import ModalContainer from "./ModalContainer";
 import { toast } from "react-toastify";
-
-const style = {
-    position: "absolute" as "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    bgcolor: "background.paper",
-};
+import { paymentSliceActions } from "../slices/paymentFormSlice";
+import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
 
 const AddPaymentModal = () => {
+    // datas that comes from redux paymentsForm
+    const formData = useAppSelector((s) => s.paymentsForm);
+
+    const dispatch = useAppDispatch();
+
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    const [selectedCustomer, setSelectedCustomer] = useState<{
-        id: string | number | null;
-        username: string | null;
-    } | null>(null);
+    const [selectedCustomer, setSelectedCustomer] =
+        useState<CustomersUsernameAndId | null>(null);
 
     const [debts, setDebts] = useState<Payment[] | null>(null);
 
@@ -49,6 +44,7 @@ const AddPaymentModal = () => {
                 const success = true;
                 if (success) resolve("Data sent successfully!");
                 else reject("Something went wrong!");
+                dispatch(paymentSliceActions.resetForm())
             }, 2000);
         });
 
@@ -95,6 +91,7 @@ const AddPaymentModal = () => {
                                     id="category-select"
                                     options={CustomersDataAutoComplete}
                                     getOptionLabel={(option) => option.username}
+                                    value={formData.customer}
                                     renderOption={(props, option) => {
                                         return (
                                             <li {...props} key={option.id}>
@@ -104,6 +101,12 @@ const AddPaymentModal = () => {
                                     }}
                                     onChange={(event, newValue) => {
                                         setSelectedCustomer(newValue);
+                                        dispatch(
+                                            paymentSliceActions.updateForm({
+                                                field: "customer",
+                                                value: newValue,
+                                            }),
+                                        );
                                     }}
                                     renderInput={(params) => (
                                         <TextField
@@ -122,6 +125,7 @@ const AddPaymentModal = () => {
                                     id="category-select"
                                     options={CustomersDataAutoComplete}
                                     getOptionLabel={(option) => option.username}
+                                    value={formData.debts}
                                     renderOption={(props, option) => {
                                         return (
                                             <li {...props} key={option.id}>
@@ -130,6 +134,14 @@ const AddPaymentModal = () => {
                                         );
                                     }}
                                     disabled={!selectedCustomer && !debts}
+                                    onChange={(event, newValue) => {
+                                        dispatch(
+                                            paymentSliceActions.updateForm({
+                                                field: "debts",
+                                                value: newValue,
+                                            }),
+                                        );
+                                    }}
                                     renderInput={(params) => (
                                         <TextField
                                             {...params}
@@ -149,6 +161,15 @@ const AddPaymentModal = () => {
                                         placeholder="مبلغ به ریال"
                                         size="small"
                                         fullWidth
+                                        value={formData.price}
+                                        onChange={(e) => {
+                                            dispatch(
+                                                paymentSliceActions.updateForm({
+                                                    field: "price",
+                                                    value: e.target.value,
+                                                }),
+                                            );
+                                        }}
                                     />
                                 </div>
                                 <div className="w-full">
@@ -163,6 +184,15 @@ const AddPaymentModal = () => {
                                                 <li {...props} key={option.id}>
                                                     {option.name}
                                                 </li>
+                                            );
+                                        }}
+                                        value={formData.method}
+                                        onChange={(event, newValue) => {
+                                            dispatch(
+                                                paymentSliceActions.updateForm({
+                                                    field: "method",
+                                                    value: newValue,
+                                                }),
                                             );
                                         }}
                                         disabled={!selectedCustomer && !debts}
@@ -186,16 +216,15 @@ const AddPaymentModal = () => {
                                         placeholder="مبلغ به ریال"
                                         size="small"
                                         fullWidth
-                                    />
-                                </div>
-                                <div className="w-full">
-                                    <Typography variant="body2">
-                                        شماره پیگیری
-                                    </Typography>
-                                    <TextField
-                                        placeholder="مبلغ به ریال"
-                                        size="small"
-                                        fullWidth
+                                        value={formData.date}
+                                        onChange={(e) => {
+                                            dispatch(
+                                                paymentSliceActions.updateForm({
+                                                    field: "date",
+                                                    value: e.target.value,
+                                                }),
+                                            );
+                                        }}
                                     />
                                 </div>
                             </div>
@@ -204,6 +233,15 @@ const AddPaymentModal = () => {
                                 rows={3}
                                 label="توضیحات"
                                 size="small"
+                                value={formData.description}
+                                onChange={(e) => {
+                                    dispatch(
+                                        paymentSliceActions.updateForm({
+                                            field: "description",
+                                            value: e.target.value,
+                                        }),
+                                    );
+                                }}
                             />
                         </form>
                     </Box>
@@ -217,7 +255,10 @@ const AddPaymentModal = () => {
                         <Button
                             variant="outlined"
                             color="error"
-                            onClick={handleClose}
+                            onClick={() => {
+                                dispatch(paymentSliceActions.resetForm());
+                                handleClose();
+                            }}
                         >
                             انصراف
                         </Button>

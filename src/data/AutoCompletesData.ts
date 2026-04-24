@@ -1,5 +1,6 @@
 import GetCustomer from "@/features/dashboard/hooks/GetCustomer"
 import { Customers } from "./DashboardCustomers"
+import { formPayMethod } from "@/types/methods"
 
 
 export interface CustomersUsernameAndId {
@@ -19,7 +20,7 @@ export const SelectedCustomersDebts = (id: string | number) => {
     return payeds
 }
 
-export const methodsAutocomplete = [
+export const methodsAutocomplete: Array<formPayMethod> = [
     { id: 1, name: "کارت", value: 'card' },
     { id: 2, name: "درگاه", value: 'bankTransfer' },
     { id: 3, name: "نقد", value: 'cash' },

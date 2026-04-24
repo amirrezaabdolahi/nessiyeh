@@ -13,10 +13,10 @@ const initialState: DebtType = {
 
 
 const debtsFormSlice = createSlice({
-    name: "DebtsForm",
+    name: "debtsForm",
     initialState,
     reducers: {
-        updateForm: <K extends keyof DebtType>(state, action: PayloadAction<{ field: K, value: DebtType[K] }>) => {
+        updateForm: <K extends keyof DebtType>(state : DebtType, action: PayloadAction<{ field: K, value: DebtType[K] }>) => {
             state[action.payload.field] = action.payload.value
         },
         resetForm: () => initialState
