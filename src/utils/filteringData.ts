@@ -75,4 +75,11 @@ export const branches: BranchMap = {
         { id: 705, name: "عطر و ادکلن", value: "perfume_cologne" },
         { id: 706, name: "مراقبت آقایان", value: "mens_care" },
     ],
+    smokes: [
+        { id: 801, name: "سیگار", value: "cigarettes" },
+        { id: 802, name: "سیگار الکترونیکی (ویپ)", value: "e_cigarettes" },
+        { id: 803, name: "ترشیحات دخانیات", value: "tobacco_flavors" },
+        { id: 804, name: "نی و لوازم جانبی", value: "accessories" },
+        { id: 805, name: "سیگار قلیان", value: "hookah_tobacco" },
+    ],
 };

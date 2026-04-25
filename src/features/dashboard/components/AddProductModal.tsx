@@ -16,38 +16,35 @@ import {
 import { useEffect, useState } from "react";
 import ModalContainer from "./ModalContainer";
 import { toast } from "react-toastify";
-
-const style = {
-    position: "absolute" as "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    bgcolor: "background.paper",
-};
+import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
+import { productFormActions } from "../slices/productFormSlice";
 
 const AddProductModal = () => {
+    const formData = useAppSelector((e) => e.productsForm);
+    const dispatch = useAppDispatch();
+
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     async function handleAddProduct() {
-            // Define the promise
-            const myPromise = new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    // Simulate success or error
-                    const success = true;
-                    if (success) resolve("Data sent successfully!");
-                    else reject("Something went wrong!");
-                }, 2000);
-            });
-    
-            // Pass the promise to toast
-            toast.promise(myPromise, {
-                pending: "درحال ثبت محصول...",
-                success: "محصول ثبت شد",
-                error: "اوهو ارور داریم !",
-            });
-        }
+        // Define the promise
+        const myPromise = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                // Simulate success or error
+                const success = true;
+                if (success) resolve("Data sent successfully!");
+                else reject("Something went wrong!");
+            }, 2000);
+        });
+
+        // Pass the promise to toast
+        toast.promise(myPromise, {
+            pending: "درحال ثبت محصول...",
+            success: "محصول ثبت شد",
+            error: "اوهو ارور داریم !",
+        });
+    }
 
     return (
         <>
@@ -85,6 +82,15 @@ const AddProductModal = () => {
                                     size="small"
                                     fullWidth
                                     placeholder="علی سعادت"
+                                    value={formData.name}
+                                    onChange={(e) => {
+                                        dispatch(
+                                            productFormActions.updateForm({
+                                                field: "name",
+                                                value: e.target.value,
+                                            }),
+                                        );
+                                    }}
                                 />
                             </div>
                             <div className="flex flex-col gap-2">
@@ -93,6 +99,15 @@ const AddProductModal = () => {
                                     size="small"
                                     fullWidth
                                     placeholder="6269334116182"
+                                    value={formData.barcode}
+                                    onChange={(e) => {
+                                        dispatch(
+                                            productFormActions.updateForm({
+                                                field: "barcode",
+                                                value: e.target.value,
+                                            }),
+                                        );
+                                    }}
                                 />
                             </div>
                             <div className="flex items-center gap-2 w-full">
@@ -101,9 +116,18 @@ const AddProductModal = () => {
                                         مبلغ خرید
                                     </Typography>
                                     <TextField
-                                        placeholder="*******0922"
+                                        placeholder="مبلغ به ریال ، (نامحدود)"
                                         size="small"
                                         fullWidth
+                                        value={formData.buy_price}
+                                        onChange={(e) => {
+                                            dispatch(
+                                                productFormActions.updateForm({
+                                                    field: "buy_price",
+                                                    value: e.target.value,
+                                                }),
+                                            );
+                                        }}
                                     />
                                 </div>
                                 <div className="w-full">
@@ -112,9 +136,21 @@ const AddProductModal = () => {
                                             مبلغ فروش
                                         </Typography>
                                         <TextField
-                                            placeholder="*******282"
+                                            placeholder="مبلغ به ریال ، (نامحدود)"
                                             size="small"
                                             fullWidth
+                                            value={formData.sell_price}
+                                            onChange={(e) => {
+                                                dispatch(
+                                                    productFormActions.updateForm(
+                                                        {
+                                                            field: "sell_price",
+                                                            value: e.target
+                                                                .value,
+                                                        },
+                                                    ),
+                                                );
+                                            }}
                                         />
                                     </div>
                                 </div>
@@ -125,9 +161,18 @@ const AddProductModal = () => {
                                         تاریخ
                                     </Typography>
                                     <TextField
-                                        placeholder="مبلغ به ریال ، (نامحدود)"
+                                        placeholder="1404/05/29"
                                         size="small"
                                         fullWidth
+                                        value={formData.date}
+                                        onChange={(e) => {
+                                            dispatch(
+                                                productFormActions.updateForm({
+                                                    field: "date",
+                                                    value: e.target.value,
+                                                }),
+                                            );
+                                        }}
                                     />
                                 </div>
                                 <div className="w-full">
@@ -135,9 +180,18 @@ const AddProductModal = () => {
                                         تاریخ انقضا (اختیاری)
                                     </Typography>
                                     <TextField
-                                        placeholder="مبلغ به ریال ، (نامحدود)"
+                                        placeholder="1404/05/29"
                                         size="small"
                                         fullWidth
+                                        value={formData.exp_date}
+                                        onChange={(e) => {
+                                            dispatch(
+                                                productFormActions.updateForm({
+                                                    field: "exp_date",
+                                                    value: e.target.value,
+                                                }),
+                                            );
+                                        }}
                                     />
                                 </div>
                             </div>
@@ -151,6 +205,15 @@ const AddProductModal = () => {
                                         id="category-select"
                                         options={categories}
                                         getOptionLabel={(option) => option.name}
+                                        value={formData.categorie}
+                                        onChange={(event, newValue) => {
+                                            dispatch(
+                                                productFormActions.updateForm({
+                                                    field: "categorie",
+                                                    value: newValue,
+                                                }),
+                                            );
+                                        }}
                                         renderOption={(props, option) => {
                                             return (
                                                 <li {...props} key={option.id}>
@@ -174,9 +237,22 @@ const AddProductModal = () => {
                                     </Typography>
                                     <Autocomplete
                                         disablePortal
-                                        id="category-select"
-                                        options={branches.dry_food}
+                                        id="branch-select"
+                                        options={
+                                            branches[
+                                                `${formData.categorie?.value}`
+                                            ]
+                                        }
                                         getOptionLabel={(option) => option.name}
+                                        value={formData.branch}
+                                        onChange={(event, newValue) => {
+                                            dispatch(
+                                                productFormActions.updateForm({
+                                                    field: "branch",
+                                                    value: newValue,
+                                                }),
+                                            );
+                                        }}
                                         renderOption={(props, option) => {
                                             return (
                                                 <li {...props} key={option.id}>
@@ -200,15 +276,29 @@ const AddProductModal = () => {
                                 rows={3}
                                 label="توضیحات"
                                 size="small"
+                                value={formData.description}
+                                onChange={(e) => {
+                                    dispatch(
+                                        productFormActions.updateForm({
+                                            field: "description",
+                                            value: e.target.value,
+                                        }),
+                                    );
+                                }}
                             />
                         </form>
                     </Box>
                     <div className="flex gap-2 border-t border-gray-300 pt-4 ">
-                        <Button variant="contained" onClick={handleAddProduct} >ثبت محصول</Button>
+                        <Button variant="contained" onClick={handleAddProduct}>
+                            ثبت محصول
+                        </Button>
                         <Button
                             variant="outlined"
                             color="error"
-                            onClick={handleClose}
+                            onClick={() => {
+                                dispatch(productFormActions.resetForm() );
+                                handleClose();
+                            }}
                         >
                             انصراف
                         </Button>

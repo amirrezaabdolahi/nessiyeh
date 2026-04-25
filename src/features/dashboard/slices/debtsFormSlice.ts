@@ -1,8 +1,8 @@
-import { DebtType } from "@/types/modalsTypes";
+import { DebtModalFormType } from "@/types/modalsTypes";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 
-const initialState: DebtType = {
+const initialState: DebtModalFormType = {
     customer: null,
     date: '',
     description: '',
@@ -16,7 +16,7 @@ const debtsFormSlice = createSlice({
     name: "debtsForm",
     initialState,
     reducers: {
-        updateForm: <K extends keyof DebtType>(state : DebtType, action: PayloadAction<{ field: K, value: DebtType[K] }>) => {
+        updateForm: <K extends keyof DebtModalFormType>(state : DebtModalFormType, action: PayloadAction<{ field: K, value: DebtModalFormType[K] }>) => {
             state[action.payload.field] = action.payload.value
         },
         resetForm: () => initialState
