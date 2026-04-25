@@ -1,9 +1,7 @@
 "use client";
 
-import { markets } from "@/data/DashboardMarkets";
 import { AddRounded, CloseRounded } from "@mui/icons-material";
 import {
-    Autocomplete,
     Box,
     Button,
     IconButton,
@@ -14,16 +12,13 @@ import {
 import { useState } from "react";
 import ModalContainer from "./ModalContainer";
 import { toast } from "react-toastify";
-
-const style = {
-    position: "absolute" as "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    bgcolor: "background.paper",
-};
+import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
+import { customerSliceActions } from "../slices/customerFormSlice";
 
 const AddCustomerModal = () => {
+    const formData = useAppSelector((s) => s.customersForm);
+    const dispatch = useAppDispatch();
+
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -83,6 +78,15 @@ const AddCustomerModal = () => {
                                     size="small"
                                     fullWidth
                                     placeholder="علی سعادت"
+                                    value={formData.fullname}
+                                    onChange={(e) => {
+                                        dispatch(
+                                            customerSliceActions.updateForm({
+                                                field: "fullname",
+                                                value: e.target.value,
+                                            }),
+                                        );
+                                    }}
                                 />
                             </div>
                             <div className="flex items-center gap-2 w-full">
@@ -94,6 +98,17 @@ const AddCustomerModal = () => {
                                         placeholder="*******0922"
                                         size="small"
                                         fullWidth
+                                        value={formData.phone}
+                                        onChange={(e) => {
+                                            dispatch(
+                                                customerSliceActions.updateForm(
+                                                    {
+                                                        field: "phone",
+                                                        value: e.target.value,
+                                                    },
+                                                ),
+                                            );
+                                        }}
                                     />
                                 </div>
                                 <div className="w-full">
@@ -105,62 +120,54 @@ const AddCustomerModal = () => {
                                             placeholder="*******282"
                                             size="small"
                                             fullWidth
+                                            value={formData.code}
+                                            onChange={(e) => {
+                                                dispatch(
+                                                    customerSliceActions.updateForm(
+                                                        {
+                                                            field: "code",
+                                                            value: e.target
+                                                                .value,
+                                                        },
+                                                    ),
+                                                );
+                                            }}
                                         />
                                     </div>
                                 </div>
                             </div>
-                            <div className="flex items-center gap-2 w-full">
-                                <div className="w-full">
-                                    <Typography variant="body2">
-                                        سقف خرید (نسیه به ریال)
-                                    </Typography>
-                                    <TextField
-                                        placeholder="مبلغ به ریال ، (نامحدود)"
-                                        size="small"
-                                        fullWidth
-                                    />
-                                </div>
-                                <div className="w-full">
-                                    <Typography variant="body2">
-                                        مارکت
-                                    </Typography>
-                                    <Autocomplete
-                                        disablePortal
-                                        id="category-select"
-                                        options={markets}
-                                        getOptionLabel={(option) => option.name}
-                                        renderOption={(props, option) => {
-                                            return (
-                                                <li {...props} key={option.id}>
-                                                    {option.name}
-                                                </li>
-                                            );
-                                        }}
-                                        renderInput={(params) => (
-                                            <TextField
-                                                {...params}
-                                                placeholder="انتخاب کنید..."
-                                            />
-                                        )}
-                                        size="small"
-                                        fullWidth
-                                    />
-                                </div>
-                            </div>
+
                             <TextField
                                 multiline
                                 rows={3}
                                 label="توضیحات"
                                 size="small"
+                                value={formData.description}
+                                onChange={(e) => {
+                                    dispatch(
+                                        customerSliceActions.updateForm({
+                                            field: "description",
+                                            value: e.target.value,
+                                        }),
+                                    );
+                                }}
                             />
                         </form>
                     </Box>
                     <div className="flex gap-2 border-t border-gray-300 pt-4 ">
-                        <Button variant="contained" onClick={handleCreateCustomer} >ثبت مشتری</Button>
+                        <Button
+                            variant="contained"
+                            onClick={handleCreateCustomer}
+                        >
+                            ثبت مشتری
+                        </Button>
                         <Button
                             variant="outlined"
                             color="error"
-                            onClick={handleClose}
+                            onClick={() => {
+                                dispatch(customerSliceActions.resetForm());
+                                handleClose();
+                            }}
                         >
                             انصراف
                         </Button>

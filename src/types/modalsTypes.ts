@@ -19,7 +19,15 @@ export interface PaymentType {
     customer?: CustomersUsernameAndId | null,
     debts?: CustomersUsernameAndId | null,
     price?: string | number,
-    method: formPayMethod | null ,
+    method: formPayMethod | null,
     date?: string,
+    description?: string
+}
+
+
+export interface CustomerModalType {
+    fullname: string,
+    phone: string | number,
+    code: string | number,
     description?: string
 }

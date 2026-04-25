@@ -1,4 +1,5 @@
 import { authReducer } from "@/features/dashboard/slices/authSlice"
+import { customerSliceReducer } from "@/features/dashboard/slices/customerFormSlice"
 import { debtsSliceReducer } from "@/features/dashboard/slices/debtsFormSlice"
 import { paymentSliceReducer } from "@/features/dashboard/slices/paymentFormSlice"
 import { configureStore } from "@reduxjs/toolkit"
@@ -10,6 +11,8 @@ export const store = configureStore({
         auth : authReducer,
         debtsForm : debtsSliceReducer,
         paymentsForm : paymentSliceReducer,
+        customersForm : customerSliceReducer,
+        
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(),
