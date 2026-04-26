@@ -20,7 +20,7 @@ import { useEffect, useState } from "react";
 import ModalContainer from "./ModalContainer";
 import { toast } from "react-toastify";
 import { useAppSelector, useAppDispatch } from "@/lib/redux/hooks";
-import { debtsSliceActions } from "../slices/debtsFormSlice";
+import { debtsSliceActions } from "../childs/debts/slices/debtsFormSlice";
 
 const AddCreditModal = () => {
     const dispatch = useAppDispatch();

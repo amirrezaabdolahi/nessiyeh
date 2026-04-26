@@ -17,7 +17,7 @@ import { useEffect, useState } from "react";
 import ModalContainer from "./ModalContainer";
 import { toast } from "react-toastify";
 import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
-import { productFormActions } from "../slices/productFormSlice";
+import { productFormActions } from "../childs/products/slices/productFormSlice";
 
 const AddProductModal = () => {
     const formData = useAppSelector((e) => e.productsForm);

@@ -19,7 +19,7 @@ import {
 import { useState } from "react";
 import ModalContainer from "./ModalContainer";
 import { toast } from "react-toastify";
-import { paymentSliceActions } from "../slices/paymentFormSlice";
+import { paymentSliceActions } from "../childs/payments/slices/paymentFormSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
 
 const AddPaymentModal = () => {

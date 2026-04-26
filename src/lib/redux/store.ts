@@ -1,8 +1,8 @@
 import { authReducer } from "@/features/dashboard/slices/authSlice"
-import { customerSliceReducer } from "@/features/dashboard/slices/customerFormSlice"
-import { debtsSliceReducer } from "@/features/dashboard/slices/debtsFormSlice"
-import { paymentSliceReducer } from "@/features/dashboard/slices/paymentFormSlice"
-import { productFormReducers } from "@/features/dashboard/slices/productFormSlice"
+import { customerSliceReducer } from "@/features/dashboard/childs/customers/slices/customerFormSlice"
+import { debtsSliceReducer } from "@/features/dashboard/childs/debts/slices/debtsFormSlice"
+import { paymentSliceReducer } from "@/features/dashboard/childs/payments/slices/paymentFormSlice"
+import { productFormReducers } from "@/features/dashboard/childs/products/slices/productFormSlice"
 import { configureStore } from "@reduxjs/toolkit"
 
 
