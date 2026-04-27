@@ -1,6 +1,6 @@
 import Code from "@/features/auth/components/Code";
-import Signin from "@/features/auth/components/signin";
-import Signup from "@/features/auth/components/signup";
+import Signin from "@/features/auth/components/Signin";
+import Signup from "@/features/auth/components/Signup";
 import { Button, TextField, Typography } from "@mui/material";
 import Link from "next/link";
 
