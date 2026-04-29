@@ -1,101 +1,60 @@
 "use client";
 
+import { validatePhone } from "@/utils/phoneValidation";
 import { Button, TextField, Typography } from "@mui/material";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { toast } from "react-toastify";
 
 const Signin = () => {
     const [phone, setPhone] = useState<string>("");
-    const [errors, setErrors] = useState<{
-        length: boolean;
-        pattern: boolean;
-        startWith: boolean;
-    }>({
-        length: false,
-        pattern: false,
-        startWith: false,
-    });
-    const buttonRef = useRef(null);
+    const [phoneError, setPhoneError] = useState<string | null>(null); // Unified error state
+    const buttonRef = useRef<HTMLButtonElement>(null); // Type assertion for buttonRef
     const [loading, setLoading] = useState<boolean>(false);
+    const router = useRouter()
 
-    const isValidPhone = (phone: string): boolean => {
-        if (!phone) return false;
-
-        // Remove spaces, dashes, parentheses
-        phone = phone.replace(/[\s\-()]/g, "");
-
-        // 1) must be at least 11 digits
-        if (phone.length < 11) {
-            setErrors((prev) => ({
-                ...prev,
-                length: true,
-            }));
-            return false;
-        }
-
-        // 2) must not contain alphabet characters
-        if (/[a-zA-Z]/.test(phone)) {
-            setErrors((prev) => ({
-                ...prev,
-                pattern: true,
-            }));
-            return false;
-        }
-
-        // 3) must start with +98 or 09
-        if (!(phone.startsWith("+98") || phone.startsWith("09"))) {
-            setErrors((prev) => ({
-                ...prev,
-                startWith: true,
-            }));
-            return false;
-        }
-
-        // 4) must contain numbers only after removing +
-        const digitsOnly = phone.startsWith("+") ? phone.slice(1) : phone;
-        if (!/^\d+$/.test(digitsOnly)) {
-            setErrors((prev) => ({
-                ...prev,
-                pattern: true,
-            }));
-            return false;
-        }
-
-        setErrors({
-            length: false,
-            pattern: false,
-            startWith: false,
-        });
-        return true;
-    };
-
-    console.log(errors);
+    
 
     const handleSendOtpCode = () => {
-        const flag = isValidPhone(phone);
-        if (!flag) {
+        const validationError = validatePhone(phone);
+        if (validationError) {
+            setPhoneError(validationError); // Set the specific error message
+            // Optionally, you might want to clear the phone state or focus the input here
             return;
         }
 
-        setLoading(true);
-        toast.loading("درحال ارسال کد");
+        setPhoneError(null); // Clear any previous errors if validation passes
+        setLoading(true); // Set loading state for UI feedback
+
+        // --- Simulate API Call ---
         const sendCode = new Promise((resolve, reject) => {
             setTimeout(() => {
-                let success = true;
+                // Simulate success/failure of the API call
+                const success = Math.random() > 0.3; // Simulate success ~70% of the time
                 if (success) {
-                    resolve("کد ارسال شد");
-                } else reject("خطا کد ارسال نشد");
-
-                setLoading(false);
-            }, 2000);
+                    resolve("کد با موفقیت ارسال شد.");
+                } else {
+                    reject("خطا در ارسال کد. لطفا دوباره امتحان کنید.");
+                }
+                router.push("?mode=code")
+            }, 2000); // Simulate network latency
         });
 
-        toast.promise(sendCode, {
-            pending: "درحال ارسال کد",
-            success: "کد ارسال شد",
-            error: "اوهو ارور داریم !",
-        });
+        // --- Toast Notification ---
+        toast
+            .promise(sendCode, {
+                pending: "درحال ارسال کد...",
+                success: {
+                    render: ({ data }) => `${data}`, // Display success message from resolve
+                },
+                error: {
+                    render: ({ data }) => `${data}`, // Display error message from reject
+                },
+            })
+            .finally(() => {
+                setLoading(false); // Always reset loading state after promise settles
+            });
     };
 
     return (
@@ -105,50 +64,47 @@ const Signin = () => {
                 <TextField
                     label="شماره موبایل"
                     size="small"
-                    type="tel"
-                    helperText="شماره ای که با آن ثبت نام کردید"
+                    type="tel" // Use "tel" for phone numbers for better mobile keyboard experience
+                    // helperText={phoneError || "شماره ای که با آن ثبت نام کردید"} // Show error or helper text
                     placeholder="09123456789"
                     required
                     autoComplete="off"
                     value={phone}
                     onChange={(e) => {
                         setPhone(e.target.value);
+                        // Optional: Clear error as user types
+                        if (phoneError) {
+                            setPhoneError(null);
+                        }
                     }}
                     onKeyDown={(e) => {
                         if (e.key === "Enter") {
+                            // Trigger button click via its ref
                             buttonRef.current?.click();
                         }
                     }}
                     inputProps={{
-                        inputMode: "numeric", // فعال‌سازی صفحه‌کلید عددی در موبایل
-                        pattern: "[0-9]*", // فقط عدد قبول کنه
-                        maxLength: 11, // مثلا برای شماره‌های ایران
+                        inputMode: "numeric", // Activates numeric keyboard on mobile
+                        pattern: "[0-9]*", // Basic browser pattern for numeric input
+                        // maxLength: 11,     // Let the validation handle length precisely
                     }}
-                    error={errors.length || errors.pattern || errors.startWith}
+                    error={!!phoneError} // Boolean check for error state
+                    helperText={
+                        phoneError
+                            ? phoneError
+                            : "شماره ای که با آن ثبت نام کردید"
+                    } // Conditional helper text
                 />
-                {errors.length && (
-                    <Typography variant="caption" color="error">
-                        شماره باید 11 رقم باشد
-                    </Typography>
-                )}
-                {errors.pattern && (
-                    <Typography variant="caption" color="error">
-                        شماره معتبر نیست
-                    </Typography>
-                )}
-                {errors.startWith && (
-                    <Typography variant="caption" color="error">
-                        شماره باید با 09 یا +98 شروع شود
-                    </Typography>
-                )}
+
                 <Button
                     variant="contained"
-                    disabled={phone.length < 11 || loading}
                     onClick={handleSendOtpCode}
                     ref={buttonRef}
-                    loading={loading}
+                    disabled={loading || !!phoneError} // Disable if loading or if there's an error
+                    // MUI Button does not have a native 'loading' prop.
+                    // We'll show loading text conditionally.
                 >
-                    ارسال کد
+                    {loading ? "درحال پردازش..." : "ارسال کد"}
                 </Button>
             </div>
             <Typography variant="body2" className="mt-4!">

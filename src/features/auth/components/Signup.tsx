@@ -13,6 +13,12 @@ import React, { useState } from "react";
 
 const Signup = () => {
     const [showPassword, setShowPassword] = useState<boolean>(false);
+    const [formData , setFormData] = useState({
+        phone : '',
+        username : '',
+        email : '',
+        password : '',
+    })
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
 
