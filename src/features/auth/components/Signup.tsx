@@ -1,5 +1,6 @@
 "use client";
 
+import validateSignupForm, { ErrorState } from "@/utils/validateSignupForm";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
     Button,
@@ -9,22 +10,73 @@ import {
     Typography,
 } from "@mui/material";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
+
+export interface formDataType {
+    phone: string;
+    username: string;
+    email: string;
+    password: string;
+}
 
 const Signup = () => {
     const [showPassword, setShowPassword] = useState<boolean>(false);
-    const [formData , setFormData] = useState({
-        phone : '',
-        username : '',
-        email : '',
-        password : '',
-    })
+    const [formData, setFormData] = useState<formDataType>({
+        phone: "",
+        username: "",
+        email: "",
+        password: "",
+    });
+
+    const [errors, setErrors] = useState<ErrorState>({
+        phone: false,
+        username: false,
+        email: false,
+        password: false,
+    });
+
+    const handleValueChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => {
+        setFormData((prev) => ({
+            ...prev,
+            [e.target.name]: e.target.value,
+        }));
+    };
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
 
     const handleMouseDownPassword = (event) => {
         event.preventDefault(); // جلوگیری از دیفالت براوزر موقع کلیک
     };
+
+    const handleSubmin = () => {
+        const isValidForm = validateSignupForm(formData);
+        if (!isValidForm.isValid) {
+            setErrors(isValidForm.errors);
+            return;
+        }
+
+        const mypromise = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                let success = true;
+                if (success) {
+                    resolve("successfully");
+                    redirect("?mode=code");
+                }
+                reject("unsuccessfully");
+            }, 2000);
+        });
+
+        toast.promise(mypromise, {
+            pending: "درحال ارسال اطلاعات",
+            success: "کد ارسال شده را وارد کنید",
+            error: "مشکلی در ارسال اطلات به وجود آمده",
+        });
+    };
+
     return (
         <>
             <div className="flex flex-col gap-4 w-100 border-b pb-6 border-gray-400 ">
@@ -33,31 +85,60 @@ const Signup = () => {
                     label="شماره موبایل"
                     size="small"
                     type="tel"
-                    helperText="از شماره ای استفاده کن که قبلا باهاش ثبت نام نکردی"
                     required
                     inputProps={{
                         inputMode: "numeric", // فعال‌سازی صفحه‌کلید عددی در موبایل
                         pattern: "[0-9]*", // فقط عدد قبول کنه
                         maxLength: 11, // مثلا برای شماره‌های ایران
                     }}
+                    name="phone"
+                    value={formData.phone}
+                    onChange={(e) => {
+                        handleValueChange(e);
+                    }}
+                    error={Boolean(errors.phone)}
+                    helperText={
+                        Boolean(errors.phone)
+                            ? errors.phone
+                            : "از شماره ای استفاده کن که قبلا باهاش ثبت نام نکردی"
+                    }
                 />
                 <TextField
                     label="نام کاربری"
                     size="small"
-                    helperText="اسم خودت یا مغازت"
                     required
+                    name="username"
+                    value={formData.username}
+                    onChange={(e) => {
+                        handleValueChange(e);
+                    }}
+                    error={Boolean(errors.username)}
+                    helperText={
+                        Boolean(errors.username)
+                            ? errors.username
+                            : "اسم خودت یا مغازت"
+                    }
                 />
                 <TextField
                     label="ایمیل"
                     size="small"
                     type="email"
-                    helperText="ایمیلت رو وارد کن ( اختیاری )"
+                    name="email"
+                    value={formData.email}
+                    onChange={(e) => {
+                        handleValueChange(e);
+                    }}
+                    error={Boolean(errors.email)}
+                    helperText={
+                        Boolean(errors.email)
+                            ? errors.email
+                            : "ایمیلت رو وارد کن ( اختیاری )"
+                    }
                 />
                 <TextField
                     label="گذرواژه"
                     size="small"
                     type={showPassword ? "text" : "password"}
-                    helperText="یه رمز انتخاب کن که یادت نر ( بعدا میتونی عوض کنی )"
                     required
                     InputProps={{
                         // این قسمت برای قرار دادن آیکون در انتهای فیلده
@@ -78,8 +159,21 @@ const Signup = () => {
                             </InputAdornment>
                         ),
                     }}
+                    name="password"
+                    value={formData.password}
+                    onChange={(e) => {
+                        handleValueChange(e);
+                    }}
+                    error={Boolean(errors.password)}
+                    helperText={
+                        Boolean(errors.password)
+                            ? errors.password
+                            : "یه رمز انتخاب کن که یادت نر ( بعدا میتونی عوض کنی )"
+                    }
                 />
-                <Button variant="contained">ثبت نام</Button>
+                <Button variant="contained" onClick={handleSubmin}>
+                    ثبت نام
+                </Button>
             </div>
             <Typography variant="body2" className="mt-4!">
                 قبلا اکانت داشتید ؟{" "}
