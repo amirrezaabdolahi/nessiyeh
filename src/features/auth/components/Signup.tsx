@@ -10,7 +10,7 @@ import {
     Typography,
 } from "@mui/material";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 
@@ -37,6 +37,10 @@ const Signup = () => {
         password: false,
     });
 
+    const [loading, setLoading] = useState<boolean>(false);
+
+    const router = useRouter();
+
     const handleValueChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     ) => {
@@ -52,29 +56,49 @@ const Signup = () => {
         event.preventDefault(); // جلوگیری از دیفالت براوزر موقع کلیک
     };
 
-    const handleSubmin = () => {
+    const handleSubmin = async () => {
         const isValidForm = validateSignupForm(formData);
         if (!isValidForm.isValid) {
             setErrors(isValidForm.errors);
             return;
         }
 
-        const mypromise = new Promise((resolve, reject) => {
-            setTimeout(() => {
-                let success = true;
-                if (success) {
-                    resolve("successfully");
-                    redirect("?mode=code");
-                }
-                reject("unsuccessfully");
-            }, 2000);
-        });
+        // const mypromise = new Promise((resolve, reject) => {
+        //     setTimeout(() => {
+        //         let success = true;
+        //         if (success) {
+        //             resolve("successfully");
+        //             redirect("?mode=code");
+        //         }
+        //         reject("unsuccessfully");
+        //     }, 2000);
+        // });
+        // toast.promise(mypromise, {
+        //     pending: "درحال ارسال اطلاعات",
+        //     success: "کد ارسال شده را وارد کنید",
+        //     error: "مشکلی در ارسال اطلات به وجود آمده",
+        // });
 
-        toast.promise(mypromise, {
-            pending: "درحال ارسال اطلاعات",
-            success: "کد ارسال شده را وارد کنید",
-            error: "مشکلی در ارسال اطلات به وجود آمده",
-        });
+        try {
+            setLoading(true);
+            const res = await fetch("api/auth/signup", {
+                method: "POST",
+                body: JSON.stringify(formData),
+            });
+
+            const data = await res.json();
+
+            if (data.ok) {
+                router.push("?mode=code");
+                toast.success("کد ارسال شد")
+            }
+
+            console.log(data);
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
