@@ -1,8 +1,7 @@
 import ChoseMarketDialog from "@/features/dashboard/components/ChoseMarketDialog";
 import { Notifications } from "@mui/icons-material";
 import { Avatar, Card, IconButton, TextField, Typography } from "@mui/material";
-
-
+import Link from "next/link";
 
 const DashboardNavBar = () => {
     return (
@@ -27,12 +26,14 @@ const DashboardNavBar = () => {
                 <IconButton size="large">
                     <Notifications />
                 </IconButton>
-                <Avatar
-                    className="cursor-pointer"
-                    sx={{ bgcolor: "primary.main" }}
-                >
-                    P
-                </Avatar>
+                <Link href={"dashboard/profile"}>
+                    <Avatar
+                        className="cursor-pointer"
+                        sx={{ bgcolor: "primary.main" }}
+                    >
+                        P
+                    </Avatar>
+                </Link>
             </div>
         </Card>
     );
