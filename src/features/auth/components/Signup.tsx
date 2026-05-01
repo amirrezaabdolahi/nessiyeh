@@ -1,5 +1,6 @@
 "use client";
 
+import { useAppDispatch } from "@/lib/redux/hooks";
 import validateSignupForm, { ErrorState } from "@/utils/validateSignupForm";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
@@ -13,6 +14,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
+import { userInfoActions } from "../slices/userInformationsSlice";
 
 export interface formDataType {
     phone: string;
@@ -40,6 +42,8 @@ const Signup = () => {
     const [loading, setLoading] = useState<boolean>(false);
 
     const router = useRouter();
+
+    const dispatch = useAppDispatch();
 
     const handleValueChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -90,7 +94,31 @@ const Signup = () => {
 
             if (data.ok) {
                 router.push("?mode=code");
-                toast.success("کد ارسال شد")
+                toast.success("کد ارسال شد");
+                dispatch(
+                    userInfoActions.updateForm({
+                        field: "phone",
+                        value: formData.phone,
+                    }),
+                );
+                dispatch(
+                    userInfoActions.updateForm({
+                        field: "username",
+                        value: formData.username,
+                    }),
+                );
+                dispatch(
+                    userInfoActions.updateForm({
+                        field: "email",
+                        value: formData.email,
+                    }),
+                );
+                dispatch(
+                    userInfoActions.updateForm({
+                        field: "password",
+                        value: formData.password,
+                    }),
+                );
             }
 
             console.log(data);

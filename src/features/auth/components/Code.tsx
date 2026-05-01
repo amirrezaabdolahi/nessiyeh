@@ -1,14 +1,17 @@
 "use client";
 
+import { useAppSelector } from "@/lib/redux/hooks";
 import { Button, TextField, Typography, Box } from "@mui/material";
 import Link from "next/link";
 import React, { useRef, useState } from "react";
+import { toast } from "react-toastify";
 
 const Code = () => {
     const [otp, setOtp] = useState<string[]>(["", "", "", "", "", ""]);
     const inputRef = useRef<HTMLInputElement[]>([]);
 
-   
+    const user = useAppSelector((s) => s.userInfo);
+
     const handleChange = (value: string, index: number) => {
         if (!/^[0-9]?$/.test(value)) return;
         const newOtp = [...otp];
@@ -19,7 +22,6 @@ const Code = () => {
         }
     };
 
-   
     const handleKeyDown = (
         e: React.KeyboardEvent<HTMLInputElement>,
         index: number,
@@ -32,6 +34,36 @@ const Code = () => {
             } else if (index > 0) {
                 inputRef.current[index - 1]?.focus();
             }
+        }
+    };
+
+    const handleSubmitOtp = async () => {
+        let code = "";
+        otp.map((num) => {
+            code += num;
+        });
+
+        try {
+            const res = await fetch("api/auth/verify-otp", {
+                method: "POST",
+                body: JSON.stringify({
+                    username: user?.username,
+                    otp: code,
+                }),
+            });
+
+            const data = await res.json();
+
+            if (data.ok) {
+                toast.success("ثبت نام با موفقیت کامل شد");
+                return
+            }
+
+            toast.error(data.message)
+
+        } catch (error) {
+            toast.error("ارور");
+            console.log(error);
         }
     };
 
@@ -69,7 +101,9 @@ const Code = () => {
                     ))}
                 </Box>
 
-                <Button variant="contained">ارسال کد</Button>
+                <Button variant="contained" onClick={handleSubmitOtp}>
+                    ارسال کد
+                </Button>
             </div>
 
             <Typography variant="body2" className="mt-4!">
