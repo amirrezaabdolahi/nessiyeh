@@ -3,14 +3,17 @@
 import { useAppSelector } from "@/lib/redux/hooks";
 import { Button, TextField, Typography, Box } from "@mui/material";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useRef, useState } from "react";
 import { toast } from "react-toastify";
 
 const Code = () => {
     const [otp, setOtp] = useState<string[]>(["", "", "", "", "", ""]);
     const inputRef = useRef<HTMLInputElement[]>([]);
+    const [loading , setLoading] = useState<boolean>(false)
 
     const user = useAppSelector((s) => s.userInfo);
+    const router = useRouter()
 
     const handleChange = (value: string, index: number) => {
         if (!/^[0-9]?$/.test(value)) return;
@@ -35,6 +38,9 @@ const Code = () => {
                 inputRef.current[index - 1]?.focus();
             }
         }
+        if (e.key === "Enter") {
+            handleSubmitOtp()
+        }
     };
 
     const handleSubmitOtp = async () => {
@@ -44,6 +50,7 @@ const Code = () => {
         });
 
         try {
+            setLoading(true)
             const res = await fetch("api/auth/verify-otp", {
                 method: "POST",
                 body: JSON.stringify({
@@ -56,6 +63,7 @@ const Code = () => {
 
             if (data.ok) {
                 toast.success("ثبت نام با موفقیت کامل شد");
+                router.replace("/dashboard")
                 return
             }
 
@@ -64,6 +72,8 @@ const Code = () => {
         } catch (error) {
             toast.error("ارور");
             console.log(error);
+        }finally{
+            setLoading(false)
         }
     };
 
@@ -101,7 +111,7 @@ const Code = () => {
                     ))}
                 </Box>
 
-                <Button variant="contained" onClick={handleSubmitOtp}>
+                <Button variant="contained" disabled={loading} loading={loading} onClick={handleSubmitOtp}>
                     ارسال کد
                 </Button>
             </div>
