@@ -24,7 +24,6 @@ const MobileMenu = () => {
             ></div>
             <div
                 className={`fixed lg:hidden top-0 ${isOpen ? "right-0" : "-right-75"} transition-all  bottom-0 z-998 flex items-start`}
-                onClick={handleOpenMenu}
             >
                 <SideBar />
 
