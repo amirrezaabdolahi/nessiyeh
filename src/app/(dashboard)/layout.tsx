@@ -9,7 +9,7 @@ export default function MainLayout({
     children: React.ReactNode;
 }) {
     return (
-        <div className="h-screen grid  grid-rows-[auto_1fr]">
+        <div className="h-screen grid  grid-rows-[auto_1fr] ">
             {/* Navbar */}
             <div className="z-10">
                 <DashboardNavBar />
