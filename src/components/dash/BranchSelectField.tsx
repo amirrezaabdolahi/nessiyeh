@@ -4,7 +4,11 @@ import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import { branches } from "@/utils/filteringData";
 
-export default function BranchSelect() {
+interface Props {
+    setBranch: any;
+}
+
+export default function BranchSelect({ setBranch }: Props) {
     return (
         <Autocomplete
             disablePortal
@@ -18,6 +22,9 @@ export default function BranchSelect() {
                     placeholder="انتخاب کنید..."
                 />
             )}
+            onChange={(event, newValue) => {
+                setBranch(newValue ? newValue : null);
+            }}
             size="small"
             sx={{ width: "100%" }}
         />

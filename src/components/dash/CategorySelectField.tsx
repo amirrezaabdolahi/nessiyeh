@@ -4,15 +4,17 @@ import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import { categories } from "@/utils/filteringData";
 
-export default function CategorySelect () {
+interface Props {
+    setCategory: any;
+}
+
+export default function CategorySelect({ setCategory }: Props) {
     return (
         <Autocomplete
             disablePortal
             id="category-select"
             options={categories}
-            getOptionLabel={(option) => option.name} // نمایش نام دسته به کاربر
-            // اگر می‌خواهید مقدار ذخیره شده در استیت همان value باشد:
-            // isOptionEqualToValue={(option, value) => option.value === value.value}
+            getOptionLabel={(option) => option.name}
 
             renderInput={(params) => (
                 <TextField
@@ -21,6 +23,9 @@ export default function CategorySelect () {
                     placeholder="انتخاب کنید..."
                 />
             )}
+            onChange={(event, newValue) => {
+                setCategory(newValue ? newValue.value : null);
+            }}
             size="small"
             fullWidth
         />

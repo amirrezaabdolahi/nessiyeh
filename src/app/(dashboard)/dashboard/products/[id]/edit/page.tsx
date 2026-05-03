@@ -7,7 +7,6 @@ import { ArrowForwardIosRounded } from "@mui/icons-material";
 import { Avatar, Button, Card, TextField, Typography } from "@mui/material";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import React from "react";
 
 const ProductEdit = async ({ params }: { params: { id: string } }) => {
     const { id } = await params;
