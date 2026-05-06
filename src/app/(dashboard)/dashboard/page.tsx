@@ -6,9 +6,11 @@ import DashboardsCards from "@/features/dashboard/childs/dashboard/components/Da
 import DashboardsCharts from "@/features/dashboard/childs/dashboard/components/DashboardsCharts";
 import DashboardsRecents from "@/features/dashboard/childs/dashboard/components/DashboardsRecents";
 import { formatedTodayDate } from "@/utils/date";
+import { CheckAuthServer } from "@/utils/auth/CheckAuth";
 
+const Dashboard = async () => {
+    await CheckAuthServer();
 
-const Dashboard = () => {
     return (
         <Container>
             <DashboardsPageHeader

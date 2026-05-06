@@ -5,7 +5,8 @@ export interface UserInfoType {
     phone: string,
     username: string,
     email?: string,
-    password: string
+    password: string,
+    isAuthenticated?: boolean
 }
 
 
@@ -13,7 +14,8 @@ const initialState: UserInfoType = {
     phone: '',
     username: '',
     email: '',
-    password: ''
+    password: '',
+    isAuthenticated: false
 }
 
 const userInfoSlice = createSlice({

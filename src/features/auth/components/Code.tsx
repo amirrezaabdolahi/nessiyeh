@@ -1,19 +1,22 @@
 "use client";
 
-import { useAppSelector } from "@/lib/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
 import { Button, TextField, Typography, Box } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useRef, useState } from "react";
 import { toast } from "react-toastify";
+import { userInfoActions } from "../slices/userInformationsSlice";
+import { setCookie } from "@/utils/auth/SetCookie";
 
 const Code = () => {
     const [otp, setOtp] = useState<string[]>(["", "", "", "", "", ""]);
     const inputRef = useRef<HTMLInputElement[]>([]);
-    const [loading , setLoading] = useState<boolean>(false)
+    const [loading, setLoading] = useState<boolean>(false);
 
     const user = useAppSelector((s) => s.userInfo);
-    const router = useRouter()
+    const dispatch = useAppDispatch();
+    const router = useRouter();
 
     const handleChange = (value: string, index: number) => {
         if (!/^[0-9]?$/.test(value)) return;
@@ -39,7 +42,7 @@ const Code = () => {
             }
         }
         if (e.key === "Enter") {
-            handleSubmitOtp()
+            handleSubmitOtp();
         }
     };
 
@@ -50,7 +53,7 @@ const Code = () => {
         });
 
         try {
-            setLoading(true)
+            setLoading(true);
             const res = await fetch("api/auth/verify-otp", {
                 method: "POST",
                 body: JSON.stringify({
@@ -63,17 +66,23 @@ const Code = () => {
 
             if (data.ok) {
                 toast.success("ثبت نام با موفقیت کامل شد");
-                router.replace("/dashboard")
-                return
+                dispatch(
+                    userInfoActions.updateForm({
+                        field: "isAuthenticated",
+                        value: true,
+                    }),
+                );
+                await setCookie("Token", user.phone);
+                router.replace("/dashboard");
+                return;
             }
 
-            toast.error(data.message)
-
+            toast.error(data.message);
         } catch (error) {
             toast.error("ارور");
             console.log(error);
-        }finally{
-            setLoading(false)
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -111,7 +120,12 @@ const Code = () => {
                     ))}
                 </Box>
 
-                <Button variant="contained" disabled={loading} loading={loading} onClick={handleSubmitOtp}>
+                <Button
+                    variant="contained"
+                    disabled={loading}
+                    loading={loading}
+                    onClick={handleSubmitOtp}
+                >
                     ارسال کد
                 </Button>
             </div>
