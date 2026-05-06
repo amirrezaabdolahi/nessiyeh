@@ -1,8 +1,8 @@
 import Code from "@/features/auth/components/Code";
 import Signin from "@/features/auth/components/Signin";
+import Signout from "@/features/auth/components/Signout";
 import Signup from "@/features/auth/components/Signup";
 import { Typography } from "@mui/material";
-
 
 const Authentication = async ({
     searchParams,
@@ -20,6 +20,8 @@ const Authentication = async ({
                 <Signup />
             ) : mode === "code" ? (
                 <Code />
+            ) : mode === "signout" ? (
+                <Signout />
             ) : (
                 <Signin />
             )}

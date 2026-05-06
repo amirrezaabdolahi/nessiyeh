@@ -29,3 +29,13 @@ export const CheckAuthServer = async () => {
     return null
 
 }
+
+export const SignoutAuth = async () => {
+    const cookieStore = await cookies()
+
+    cookieStore.delete("Token")
+
+    console.log('object');
+
+    redirect('auth?mode=signin')
+}
