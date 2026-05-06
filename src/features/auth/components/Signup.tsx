@@ -95,6 +95,7 @@ const Signup = () => {
             if (data.ok) {
                 router.push("?mode=code");
                 toast.success("کد ارسال شد");
+                toast.info(data.otp, { autoClose: 10000 });
                 dispatch(
                     userInfoActions.updateForm({
                         field: "phone",
