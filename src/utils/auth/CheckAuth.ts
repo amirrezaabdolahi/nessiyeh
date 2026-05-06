@@ -1,19 +1,20 @@
+"use server"
 import { useAppSelector } from "@/lib/redux/hooks"
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation"
 
 
-export const CheckAuthClient = () => {
-    "use client";
+// export const CheckAuthClient = () => {
+//     "use client";
 
-    const isAuthenticated = useAppSelector((s) => s.userInfo.isAuthenticated)
+//     const isAuthenticated = useAppSelector((s) => s.userInfo.isAuthenticated)
 
-    if (!isAuthenticated) {
-        redirect("/auth?mode=signin")
-    }
+//     if (!isAuthenticated) {
+//         redirect("/auth?mode=signin")
+//     }
 
-    return null
-}
+//     return null
+// }
 
 export const CheckAuthServer = async () => {
     const cookieStore = await cookies()
@@ -37,5 +38,5 @@ export const SignoutAuth = async () => {
 
     console.log('object');
 
-    redirect('auth?mode=signin')
+    redirect('/auth?mode=signin')
 }
