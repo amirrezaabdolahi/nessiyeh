@@ -26,7 +26,7 @@ const DashboardNavBar = () => {
                 <IconButton size="large">
                     <Notifications />
                 </IconButton>
-                <Link href={"dashboard/profile"}>
+                <Link href={"/dashboard/profile"}>
                     <Avatar
                         className="cursor-pointer"
                         sx={{ bgcolor: "primary.main" }}
