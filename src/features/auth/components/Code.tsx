@@ -77,7 +77,7 @@ const Code = () => {
                 return;
             }
 
-            toast.error(data.message);
+            toast.error(data.message , {draggable : true , closeOnClick : true});
         } catch (error) {
             toast.error("ارور");
             console.log(error);
@@ -112,11 +112,10 @@ const Code = () => {
                                 inputMode: "numeric",
                                 style: {
                                     textAlign: "center",
-                                    fontSize: { xs: "1rem", md: "1.5rem" },
-                                    width: { xs: "100%", md: "45px" },
-                                    padding: { xs: 2, md: 4 },
                                 },
+                                className : " p-2! md:p-4! max-w-[45px] "
                             }}
+                            className="w-full!"
                         />
                     ))}
                 </Box>

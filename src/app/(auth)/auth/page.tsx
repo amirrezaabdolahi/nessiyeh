@@ -12,11 +12,11 @@ const Authentication = async ({
     const { mode } = await searchParams;
 
     return (
-        <div className="flex flex-col items-center shadow p-4 rounded">
+        <div className="flex flex-col items-center shadow p-4 rounded w-full md:w-auto mx-2 md:mx-0">
             <Typography variant="h5" className="mb-6!">
                 نسیه
             </Typography>
-            <div className="w-full sm:w-75 md:w-125">
+            <div className="w-full sm:w-full md:w-125">
                 {mode === "signup" ? (
                     <Signup />
                 ) : mode === "code" ? (
