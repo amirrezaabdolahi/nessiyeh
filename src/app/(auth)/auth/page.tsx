@@ -16,15 +16,17 @@ const Authentication = async ({
             <Typography variant="h5" className="mb-6!">
                 نسیه
             </Typography>
-            {mode === "signup" ? (
-                <Signup />
-            ) : mode === "code" ? (
-                <Code />
-            ) : mode === "signout" ? (
-                <Signout />
-            ) : (
-                <Signin />
-            )}
+            <div className="w-full sm:w-75 md:w-125">
+                {mode === "signup" ? (
+                    <Signup />
+                ) : mode === "code" ? (
+                    <Code />
+                ) : mode === "signout" ? (
+                    <Signout />
+                ) : (
+                    <Signin />
+                )}
+            </div>
         </div>
     );
 };

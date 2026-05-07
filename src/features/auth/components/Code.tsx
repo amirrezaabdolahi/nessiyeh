@@ -88,7 +88,7 @@ const Code = () => {
 
     return (
         <>
-            <div className="flex flex-col gap-4 w-100 border-b pb-6 border-gray-400">
+            <div className="flex flex-col gap-4 w-full border-b pb-6 border-gray-400">
                 <Typography variant="body1">کد ارسال شده رو وارد کن</Typography>
 
                 <Box display="flex" gap={2} dir="ltr">
@@ -112,8 +112,9 @@ const Code = () => {
                                 inputMode: "numeric",
                                 style: {
                                     textAlign: "center",
-                                    fontSize: "1.5rem",
-                                    width: "45px",
+                                    fontSize: { xs: "1rem", md: "1.5rem" },
+                                    width: { xs: "100%", md: "45px" },
+                                    padding: { xs: 2, md: 4 },
                                 },
                             }}
                         />

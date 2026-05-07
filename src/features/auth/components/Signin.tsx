@@ -59,7 +59,7 @@ const Signin = () => {
 
     return (
         <>
-            <div className="flex flex-col gap-4 w-100 border-b pb-6 border-gray-400">
+            <div className="flex flex-col gap-4 w-full border-b pb-6 border-gray-400">
                 <Typography variant="body1">ورود به اکانت</Typography>
                 <TextField
                     label="شماره موبایل"
