@@ -13,7 +13,7 @@ export async function POST(req: Request) {
 
     if (!savedOtp || Number(otp) !== savedOtp) {
         return NextResponse.json({
-            ok: false, message: "Invalid OTP"
+            ok: false, message: "کد وارد شده اشتباه است"
         },
             { status: 401 }
         )

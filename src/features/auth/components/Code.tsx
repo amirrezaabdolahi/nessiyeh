@@ -28,6 +28,8 @@ const Code = () => {
         }
     };
 
+    console.log(otp);
+
     const handleKeyDown = (
         e: React.KeyboardEvent<HTMLInputElement>,
         index: number,
